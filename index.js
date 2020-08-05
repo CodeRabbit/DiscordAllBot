@@ -9,7 +9,7 @@ client.on('ready', () => {
 client.on('ready', message =>
 {
   // コンソールにbot is ready!を表示する
-	console.log('bot is ready!');
+  console.log('bot is ready!');
   // 〇〇をプレイ中のところに　にゃーんをプレイ中と表示する
   client.user.setPresence({ game: { name: 'nyancat' } });
 });
@@ -43,7 +43,6 @@ client.on('message', message =>
             {
               name: ":cat2:",
               value: "[そらちゃん](https://sorachan-bot.glitch.me/)"
-              
             },
             {
               name: ":chicken:",
@@ -72,16 +71,14 @@ client.on('message', message =>
           ]
         }
       }
-    ); 
+    );
   }
-  
-  // 
   // もし、メッセージを送ったauthIDとアカウントのIDが同じであれば　（簡単に言うと自分にメンションを飛ばしていた場合）
   if (message.author.id === client.user.id) {
       //  ここで処理を終了させる
        return;
   }
-  
+
   const secret_keyword = ["そらちゃんの気持ち", 'そらちゃんのきもち', '猫の気持ち', '猫のきもち', 'ねこのきもち', 'ねこの気持ち'];
   const secret_roar = ['みんな大好き〜！', 'なでて〜', 'あそんで〜！'];
   if(secret_keyword.indexOf(message.content) !== -1){
@@ -122,7 +119,6 @@ client.on('message', message =>
     message.channel.send(greeting_roar[rnd_num]);
   }
   
-  
   if(message.content.split(/\s/)[0] === "にゃん"){
     const user_message = message.content.split(/\s/)[1];
     let pre = "";
@@ -140,8 +136,7 @@ client.on('message', message =>
        "にゃん UnbelievaBoat:ユーザーが使えるコマンドだけを表示"+
        "にゃん groovy:groovy(音楽bot)のコマンドを表示"+
        "にゃん gy:上のコマンドの省略系"
-       
-     ) 
+     )
     }
     if(user_message === "にゃん"){
       pre = "!";
@@ -196,8 +191,6 @@ client.on('message', message =>
         ":yellow_heart:黄（イエロー）："+n1+"・簡単な基本コマンドを覚えて使えるようになる"+n1+"（Groovyのコマンド、UnbelievaBoatのコマンドの一部）"+n2+
         ":orange_heart:橙（オレンジ）："+n1+"・周りの人と交流し仲良くできること"+n2+
         ":heart:赤（レッド）："+n1+"・#自己紹介 チャンネルで自己紹介を行う"+n2
-        
-                          
       );
     }
     else if(user_message === "UnbelievaBoat-all" || user_message === "unbelievaboat-all" || user_message === "ub-a"){
@@ -416,7 +409,7 @@ client.on('message', message =>
         pre+"perms <deny | allow | clear> <ロール | ユーザー>, <パーミッション>"+n1+
         "ロールまたはユーザーの権限を変更する allを使用することで全ての権限を選択できる"+n1+
         aliase+"無し"+n2
-      ); 
+      );
     }
     else if(user_message === "Rythm" || user_message === "rythm"){
       
@@ -434,13 +427,13 @@ client.on('message', message =>
   //message.channel.send(message.content);
   
   // もしメッセージの中のメンションが自分（bot）であれば
-	if(message.isMemberMentioned(client.user))
-	{
+  if(message.isMemberMentioned(client.user))
+  {
     // にゃ〜んとメッセージを送る
-		message.channel.send( 'にゃ〜ん' );
+    message.channel.send( 'にゃ〜ん' );
     // ここで処理を終了させる
-		return;
-	}
+    return;
+  }
   
 
   
