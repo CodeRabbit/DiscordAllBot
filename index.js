@@ -1,25 +1,15 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
+const Discord = require('discord.js')
+const client = new Discord.Client()
 
 client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-});
+  console.log(`${client.user.tag}にログインしました！`)
+})
 
-// クライアントの準備が完了したら開始
-client.on('ready', message =>
-{
-  // コンソールにbot is ready!を表示する
-  console.log('bot is ready!');
-  // 〇〇をプレイ中のところに　にゃーんをプレイ中と表示する
-  client.user.setPresence({ game: { name: 'nyancat' } });
-});
-
-// クライアントからメッセージがきたら開始
 client.on('message', message =>
 {
-  
+  let user_message = message.content.replace(/　/g, ' ');
   const botup = ["sora up-bot","sora bot-up", "そら 復活の呪文", "そら ふっかつのじゅもん"];
-  if(botup.includes(message.content)){
+  if(botup.includes(user_message)){
     message.channel.send(
       {
         embed: {
@@ -81,35 +71,35 @@ client.on('message', message =>
 
   const secret_keyword = ["そらちゃんの気持ち", 'そらちゃんのきもち', '猫の気持ち', '猫のきもち', 'ねこのきもち', 'ねこの気持ち'];
   const secret_roar = ['みんな大好き〜！', 'なでて〜', 'あそんで〜！'];
-  if(secret_keyword.indexOf(message.content) !== -1){
+  if(secret_keyword.indexOf(user_message) !== -1){
     let rnd_num = Math.floor( Math.random() * secret_roar.length );
     return message.channel.send(secret_roar[rnd_num]);
   }
-  
+
   let keyword = ['そらちゃん', 'そーらちゃん', 'そらちゃーん', 'そ〜らちゃん', 'そらちゃ〜ん'];
   let roar = ['にゃーん', 'にゃ〜ん', 'ﾐｬｰ!', 'にゃ〜', 'にゃー！'];
   // もしメッセージの中にそらちゃんという文字がはいっていれば
   var word_flag = false;
   for(let i = 0;i < keyword.length;i++){
-    if(message.content.indexOf(keyword[i]) !== -1){
+    if(user_message.indexOf(keyword[i]) !== -1){
       word_flag = true;
     }
   }
-  
+
   if(word_flag){
     // 整数の１００までのランダムの数を　変数rnd_numの中に入れる
     let rnd_num = Math.floor( Math.random() * roar.length );
     // もしrnd_numが９０以下であれば にゃ〜ん とメッセージを送る
      message.channel.send(roar[rnd_num]);
   }
-  
+
   const greeting_keyword = ['おやすみ','おやすみなさい', 'おやすみなさーい', 'おはよー', 'おはよう', 'おっはー', 'こんにちは', 'こんばんは','こんばんわ', 'ただいま', 'ちゃっす', 'またね', 'ばいばい', 'さようなら', 'さらば'];
   const greeting_roar = ['にゃん', 'にゃーん', 'にゃ〜？', 'にゃー！', 'み〜！', 'にゃ〜〜'];
-  
-  // console.log((message.content).indexOf(greeting_keyword[0]));
+
+  // console.log((user_message).indexOf(greeting_keyword[0]));
   let count = 0;
   for(let i = 0; i < greeting_keyword.length; i++){
-    if(message.content.indexOf(greeting_keyword[i]) !== -1){
+    if(user_message.indexOf(greeting_keyword[i]) !== -1){
       count+=1;
       console.log(count);
     }
@@ -118,27 +108,27 @@ client.on('message', message =>
     let rnd_num = Math.floor( Math.random() * greeting_roar.length );
     message.channel.send(greeting_roar[rnd_num]);
   }
-  
-  if(message.content.split(/\s/)[0] === "にゃん"){
-    const user_message = message.content.split(/\s/)[1];
+
+  if(user_message.split(/\s/)[0] === "にゃん"){
+    const command = user_message.split(/\s/)[1];
     let pre = "";
     let n1 = "\n";
     let n2 = "\n\n";
     let n3 = "\n\n\n";
-    if(user_message === "help"){
-     return message.content.send(
-       "にゃん　にゃん :カジノで遊べるコマンド一覧を教えてくれる"+
-       "にゃん　にゃー :サーバーに入っている人数（bot込）を教えてくれる"+
-       "にゃん　ぱす  :ランクの説明"+
-       "にゃん　ぱすー :ランクの昇格基準の表示"+
-       "にゃん UnbelievaBoat-all: UnbelievaBoatのコマンドを全て表示"+
-       "にゃん un-a:上のコマンドの省略形"+
-       "にゃん UnbelievaBoat:ユーザーが使えるコマンドだけを表示"+
-       "にゃん groovy:groovy(音楽bot)のコマンドを表示"+
-       "にゃん gy:上のコマンドの省略系"
+    if(command=== "help"){
+     return message.channel.send(
+       "にゃん　にゃん :カジノで遊べるコマンド一覧を教えてくれる\n"+
+       "にゃん　にゃー :サーバーに入っている人数（bot込）を教えてくれる\n"+
+       "にゃん　ぱす  :ランクの説明\n"+
+       "にゃん　ぱすー :ランクの昇格基準の表示\n"+
+       "にゃん UnbelievaBoat-all: UnbelievaBoatのコマンドを全て表示\n"+
+       "にゃん un-a:上のコマンドの省略形\n"+
+       "にゃん UnbelievaBoat:ユーザーが使えるコマンドだけを表示\n"+
+       "にゃん groovy:groovy(音楽bot)のコマンドを表示\n"+
+       "にゃん gy:上のコマンドの省略系\n"
      )
     }
-    if(user_message === "にゃん"){
+    if(command === "にゃん"){
       pre = "!";
       message.channel.send(
       "!bj 賭け金            　　　         （ブラックジャック）\n"+
@@ -157,11 +147,11 @@ client.on('message', message =>
       "!bal                　　　　　　　 （所持金確認）\n")
         .then(message => message.react('🐈'));
     }
-    else if(user_message === "にゃー"){
+    else if(command === "にゃー"){
       message.channel.send("このサーバーのメンバーは"+message.guild.members.size+"人だにゃ")
         .then(message => message.react('🐈'))
     }
-    else if(user_message === "ぱす"){
+    else if(command === "ぱす"){
       message.channel.send(
         "このサーバーでは\n"+
         ":bookmark:白（ウルトラヴァイオレット）\n"+
@@ -176,7 +166,7 @@ client.on('message', message =>
         "のランクがあって\n"+
         "上に行けば行くほど強い権限をもらえるし　いろいろできることが増える");
     }
-    else if(user_message === "ぱすー"){
+    else if(command === "ぱすー"){
       message.channel.send(
         "基本はレッドから始まりますが"+n1+
         "荒らし行為や人の迷惑になる行為を行った場合"+n1+
@@ -193,73 +183,73 @@ client.on('message', message =>
         ":heart:赤（レッド）："+n1+"・#自己紹介 チャンネルで自己紹介を行う"+n2
       );
     }
-    else if(user_message === "UnbelievaBoat-all" || user_message === "unbelievaboat-all" || user_message === "ub-a"){
+    else if(command === "UnbelievaBoat-all" || command === "unbelievaboat-all" || command === "ub-a"){
       pre = "!";
       message.channel.send(
         "ーーーーーーー 経済 ーーーーーーー"+n3+
-        
-        
+
+
         "ーー 管理者 ーー"+n2+
-        
+
         pre+"set-currency <シンボル>"+n1+
         "通貨シンボルを変更する"+n2+
-        
+
         pre+"set-start-balance <金額>"+n1+
         "開始銀行残高を設定する"+n2+
-        
+
         pre+"money-audit-log <enable | disable> [チャンネル]"+n1+
         "金銭取引の監査ログチャンネルを設定する"+n2+
-        
+
         pre+"maximum-balance <cash | bank> <金額>"+n1+
         "手持ちの現金または銀行の最大残高を設定する"+n2+
-        
+
         pre+"add-money [cash | bank] <メンバー> <金額>"+n1+
         "メンバーにお金を付与する"+n2+
-        
+
         pre+"add-money-role [cash | bank] <ロール> <金額>"+n1+
         "ロール全員にお金を付与する"+n2+
-        
+
         pre+"remove-money [cash | bank] <メンバー> <金額>"+n1+
         "メンバーからお金を除去する"+n2+
-        
+
         pre+"remove-money-role [cash | bank] <ロール> <金額>"+n1+
         "ロール全員からお金を除去する"+n3+
-        
-        
+
+
         "ーー 一般プレイヤー ーー"+n2+
-        
+
         pre+"economy-stats:"+n1+
         "全体経済の統計を表示"+n2+
-        
+
         pre+"deposit <金額 | all>"+n1+
         "銀行に指定した金額預ける"+n2+
-        
+
         pre+"withdraw <金額 | all>"+n1+
         "指定した金額銀行から引き出す"+n2+
-        
+
         pre+"give-money <メンバー> <金額 | all>"+n1+
         "指定したメンバーに指定した金額渡す"+n2+
-        
+
         pre+"money [メンバー]"+n1+
         "指定したメンバーの所持金を表示"+n2+
-        
+
         pre+"leaderboard [ページ] [-cash | bank | -total]"+n1+
         "統計ランキングを見る"+n2+
-        
+
         "ーーーーーーーーーーーーーーーーー"+n3+
-        
-        
+
+
         "ーーーーーーー 所得 ーーーーーーー"+n3+
-        
-        
+
+
         "ーー 管理者 ーー"+n2+
-        
+
         pre+""+n1+
-        
-        
-        
+
+
+
         "ーー 一般プレイヤー ーー"+n2+
-        
+
         pre+"work"+n1+
         "お題もらいそれに答えることでハートを少しだけ貰える"+n2+
         pre+"slut"+n1+
@@ -268,14 +258,14 @@ client.on('message', message =>
         "リスクはあるが成功すると一定数　"+n2+
         pre+"rob <ユーザー>"+n1+
         "ユーザーの手持ちからお金を盗む　対象の総合金額が自分より大きいほど成功率は高くなるが　失敗すると大金を失う"+n2+
-        
-        
-        
+
+
+
         "ーーーーーーーーーーーーーーーーー"+n3
-        
+
       );
     }
-    else if(user_message === "UnbelievaBoat" || user_message === "unbelievaboat"　|| user_message === "ub"){
+    else if(command === "UnbelievaBoat" || command === "unbelievaboat"　|| command === "ub"){
       message.channel.send(
         "ーーーーーーー経済ーーーーーーー"+n1+
         pre+"economy-stats:"+n1+
@@ -290,177 +280,138 @@ client.on('message', message =>
         "指定したメンバーの所持金を表示"+n2+
         pre+"leaderboard [ページ] [-cash | bank | -total]"+n1+
         "統計ランキングを見る"+n2+
-        
+
         "ーーーーーーーーーーーーーーーーー"
       );
     }
-    else if(user_message === "Groovy" || user_message === "groovy" || user_message === "gy"){
+    else if(command === "Groovy" || command === "groovy" || command === "gy"){
       pre = "-";
       let aliase = "省略:";
       message.channel.send(
         pre+"play <リンク | 探したい曲名>"+n1+
         "指定した曲やプレイリストを再生できる"+n1+
         aliase+"p,q,queue"+n2+
-        
+
         pre+"play file"+n1+
         "メッセージに添付されたファイルを再生する"+n1+
         aliase+"pf"+n2+
-        
+
         pre+"queue"+n1+
         "追加されているリクエストをみる"+n1+
         aliase+"q"+n2+
-        
+
         pre+"next"+n1+
         "次の曲にスキップする"+n1+
         aliase+"n,skip"+n2+
-        
+
         pre+"back"+n1+
         "前の曲に戻る"+n1+
         aliase+"b,previous,prev"+n2+
-        
+
         pre+"clear"+n1+
         "リクエストされている曲をすべて削除する"+n1+
         aliase+"無し"+n2+
-        
+
         pre+"jump <曲の位置 | 曲のタイトル>"+n1+
         "指定したリクエストにジャンプする"+n1+
         aliase+"j,goto"+n2+
-        
+
         pre+"loop"+n1+
         "1回やるとリクエストされた曲全体でループする　２回やると今再生されている曲をループする　３回やるとループ解除"+n1+
         aliase+"l"+n2+
-        
+
         pre+"lylics [曲名]"+n1+
         "再生中の曲の歌詞を出す（精度は期待できない）"+n1+
         aliase+"ly"+n2+
-        
+
         pre+"pause"+n1+
         "再生を一時停止する"+n1+
         aliase+"無し"+n2+
-        
+
         pre+"resume"+n1+
         "一時停止を解除"+n1+
         aliase+"unpause"+n2+
-        
+
         pre+"remove"+n1+
         "指定された曲をリクエストから削除する"+n1+
         aliase+"r,rm,delete,del"+n2+
-        
+
         pre+"remove range <start>, <end>"+n1+
         "指定された範囲のリクエストを消す"+n1+
         aliase+"rr"+n2+
-        
+
         pre+"disconnect"+n1+
         "botをボイスチャンネルから離脱させる"+n1+
         aliase+"dc,leave,reset"+n2+
-        
+
         pre+"shuffle"+n1+
         "リクエストされた曲をシャッフルする"+n1+
         aliase+"shuff,shuf,randomize,randomise"+n2+
-        
+
         pre+"song [曲名 | 曲の位置]"+n1+
         "リクエスト内の指定した曲の情報を表示する"+n1+
         aliase+"nowplaying,np"+n2+
-        
+
         pre+"fast forward [秒数]"+n1+
         "指定した秒数だけ早送りする"+n1+
         aliase+"ff,fwd"+n2+
-        
+
         pre+"rewind [秒数]"+n1+
         "指定した秒数だけ巻き戻す"+n1+
         aliase+"rw"+n2+
-        
+
         pre+"search <曲名>"+n1+
         "曲名で探したあと　ナンバーで指定して曲を追加できる"+n1+
         aliase+"s"+n2+
-        
+
         pre+"seek <曲のポジション>"+n1+
         "今流れている曲の位置を指定した位置に変更する"+n1+
         aliase+"無し"+n2+
-        
+
         pre+"stop"+n1+
         "再生中のリクエスト曲を停止させる+"+n1+
         aliase+"無し"+n2+
-        
+
         pre+"move <曲名>, <新しい位置>"+n1+
         "指定した曲の位置を変更する"+n1+
         aliase+"m"+n2+
-        
+
         pre+"prefix"+n1+
         "botの接頭語を確認する"+n1+
         aliase+"無し"+n2+
-        
+
         pre+"prefix <新しい接頭語>"+n1+
         "botの接頭語を変更する"+
         aliase+"無し"+n2+
-        
+
         pre+"announce"+n1+
         "「再生中」のアナウンスメッセージの設定を切り替える"+n1+
         aliase+"無し"+n2+
-        
+
         pre+"perms"+n1+
         "使用可能な全てのロールを表示する"+n1+
         aliase+"無し"+n2+
-        
+
         pre+"perms <ロール | ユーザー>"+n1+
         "指定した対象の設定がどうなっているかを確認できる"+n1+
         aliase+"無し"+n2+
-        
+
         pre+"perms <deny | allow | clear> <ロール | ユーザー>, <パーミッション>"+n1+
         "ロールまたはユーザーの権限を変更する allを使用することで全ての権限を選択できる"+n1+
         aliase+"無し"+n2
       );
     }
-    else if(user_message === "Rythm" || user_message === "rythm"){
-      
+    else if(command === "Rythm" || command === "rythm"){
+
     }
   }
-  
+
   // もし、クライアントからのメッセージが　ぬるぽ　なら
-  if (message.content === 'ぬるぽ') {
-    
+  if (user_message === 'ぬるぽ') {
+
     // 発言されたチャンネルに　ガッ！　とメッセージを送る
     message.channel.send('ガッ！');
   }
-  
-  // 送られてきたメッセージをオウム返しする
-  //message.channel.send(message.content);
-  
-  // もしメッセージの中のメンションが自分（bot）であれば
-  if(message.isMemberMentioned(client.user))
-  {
-    // にゃ〜んとメッセージを送る
-    message.channel.send( 'にゃ〜ん' );
-    // ここで処理を終了させる
-    return;
-  }
-  
-
-  
-  
-  
-  /*
-  
-  // 変数fileに　送られてきたファイルを格納する
-  const file = message.attachments.first();
-  
-  // 添付ファイルがなかったらスルー
-   if (!file) return;
-  
-  // 画像じゃなかったらスルー
-   if (!file.height && !file.width) return;
- 
-  // メッセージを送ってきたチャンネルに変数fileのurlを返す（画像を貼る）
-   return message.channel.send({
-     embed: {
-       image: {
-         url: file.url
-       }
-     }
-   })
-   
-  */
-
 });
 
-client.login(process.env.BOT_TOKEN);
+client.login(process.env.DISCORD_BOT_TOKEN)
