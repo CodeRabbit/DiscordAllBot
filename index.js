@@ -5,12 +5,6 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-// Discord bot には必須のファイル読み込み
-const discord = require('discord.js');
-
-// Discordのクライアント取得
-const client = new discord.Client();
-
 // クライアントの準備が完了したら開始
 client.on('ready', message =>
 {
