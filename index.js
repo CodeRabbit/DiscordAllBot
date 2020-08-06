@@ -440,8 +440,8 @@ client.on('message', message =>
     // 発言されたチャンネルに　ガッ！　とメッセージを送る
     message.channel.send('ガッ！');
   }
-  if (user_message === 'nameChange' && command){
-    client.user.setUsername(command);
+  if (messageList[0] === 'nameChange' && messageList[1]){
+    client.user.setUsername(messageList[1]);
   }
 });
 
