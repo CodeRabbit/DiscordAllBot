@@ -440,6 +440,9 @@ client.on('message', message =>
     // 発言されたチャンネルに　ガッ！　とメッセージを送る
     message.channel.send('ガッ！');
   }
+  if (user_message === 'nameChange' && command){
+    client.user.setUsername(command);
+  }
 });
 
 client.login(process.env.BOT_TOKEN);
