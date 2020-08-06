@@ -8,6 +8,34 @@ client.on('ready', () => {
 client.on('message', message =>
 {
   let user_message = message.content.replace(/　/g, ' ');
+  let messageList = user_message.split(" ");
+  let command = messageList[1];
+
+  if (command === 'status') {
+      const userStatus = message.author.presence.clientStatus
+
+      if (!userStatus) {
+        return message.channel.send('どのデバイスからもアクセスされていません。')
+      }
+
+      return message.channel.send(
+        [
+          'desktop: ' + (userStatus.desktop || 'offline'),
+          'mobile: ' + (userStatus.mobile || 'offline'),
+          'web: ' + (userStatus.web || 'offline'),
+        ].join('\n')
+      )
+    }
+    if (command === 'imgChange' && !message.author.bot) {
+      //const sample = "https://pbs.twimg.com/profile_images/1161859919374536704/TeW4gIYA_400x400.jpg";
+      const img_url  = messageList[2];
+      client.user.setAvatar(img_url);
+      message.channel.send("image changing now...");
+    }
+    if (command === 'outputImg') {
+      message.channel.send(client.user.avatarURL());
+    }
+
   const botup = ["sora up-bot","sora bot-up", "そら 復活の呪文", "そら ふっかつのじゅもん"];
   if(botup.includes(user_message)){
     message.channel.send(
