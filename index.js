@@ -11,7 +11,7 @@ client.on('message', message =>
   let messageList = user_message.split(" ");
   let command = messageList[1];
 
-  if (command === 'status') {
+  if (user_message === 'status') {
       const userStatus = message.author.presence.clientStatus
 
       if (!userStatus) {
@@ -26,15 +26,25 @@ client.on('message', message =>
         ].join('\n')
       )
     }
-    if (command === 'imgChange' && !message.author.bot) {
-      //const sample = "https://pbs.twimg.com/profile_images/1161859919374536704/TeW4gIYA_400x400.jpg";
-      const img_url  = messageList[2];
-      client.user.setAvatar(img_url);
-      message.channel.send("image changing now...");
-    }
-    if (command === 'outputImg') {
-      message.channel.send(client.user.avatarURL());
-    }
+  if (messageList[0] === 'imgChange' && !message.author.bot) {
+    //const sample = "https://pbs.twimg.com/profile_images/1161859919374536704/TeW4gIYA_400x400.jpg";
+    const img_url  = messageList[1];
+    client.user.setAvatar(img_url);
+    message.channel.send("image changing now...");
+  }
+
+  if (command === 'outputImg') {
+    message.channel.send(client.user.avatarURL());
+  }
+
+  // もし、クライアントからのメッセージが　ぬるぽ　なら
+   if (user_message === 'ぬるぽ') {
+    // 発言されたチャンネルに　ガッ！　とメッセージを送る
+    message.channel.send('ガッ！');
+  }
+  if (messageList[0] === 'nameChange' && messageList[1]){
+    client.user.setUsername(messageList[1]);
+  }
 
   const botup = ["sora up-bot","sora bot-up", "そら 復活の呪文", "そら ふっかつのじゅもん"];
   if(botup.includes(user_message)){
@@ -432,16 +442,6 @@ client.on('message', message =>
     else if(command === "Rythm" || command === "rythm"){
 
     }
-  }
-
-  // もし、クライアントからのメッセージが　ぬるぽ　なら
-  if (user_message === 'ぬるぽ') {
-
-    // 発言されたチャンネルに　ガッ！　とメッセージを送る
-    message.channel.send('ガッ！');
-  }
-  if (messageList[0] === 'nameChange' && messageList[1]){
-    client.user.setUsername(messageList[1]);
   }
 });
 
