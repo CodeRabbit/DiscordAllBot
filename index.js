@@ -33,7 +33,7 @@ client.on('message', message =>
     message.channel.send("image changing now...");
   }
 
-  if (command === 'outputImg') {
+  if (user_message === 'outputImg') {
     message.channel.send(client.user.avatarURL());
   }
 
