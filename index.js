@@ -7,6 +7,8 @@ client.on('ready', () => {
 
 client.on('message', message =>
 {
+  // botだったらここではじく
+  if (message.author.bot) return
   let user_message = message.content.replace(/　/g, ' ');
   let messageList = user_message.split(" ");
   let command = messageList[1];
@@ -26,7 +28,7 @@ client.on('message', message =>
         ].join('\n')
       )
     }
-  if (messageList[0] === 'imgChange' && !message.author.bot) {
+  if (messageList[0] === 'imgChange') {
     //const sample = "https://pbs.twimg.com/profile_images/1161859919374536704/TeW4gIYA_400x400.jpg";
     const img_url  = messageList[1];
     client.user.setAvatar(img_url);
