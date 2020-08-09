@@ -7,6 +7,7 @@ client.on('ready', () => {
 
 client.on('message', message =>
 {
+  console.log(`name:${message.author.username}, bot?:${message.author.bot}`)
   // botだったらここではじく
   if (message.author.bot) return
   let user_message = message.content.replace(/　/g, ' ');
@@ -109,45 +110,7 @@ client.on('message', message =>
        return;
   }
 
-  const secret_keyword = ["そらちゃんの気持ち", 'そらちゃんのきもち', '猫の気持ち', '猫のきもち', 'ねこのきもち', 'ねこの気持ち'];
-  const secret_roar = ['みんな大好き〜！', 'なでて〜', 'あそんで〜！'];
-  if(secret_keyword.indexOf(user_message) !== -1){
-    let rnd_num = Math.floor( Math.random() * secret_roar.length );
-    return message.channel.send(secret_roar[rnd_num]);
-  }
-
-  let keyword = ['そらちゃん', 'そーらちゃん', 'そらちゃーん', 'そ〜らちゃん', 'そらちゃ〜ん'];
-  let roar = ['にゃーん', 'にゃ〜ん', 'ﾐｬｰ!', 'にゃ〜', 'にゃー！'];
-  // もしメッセージの中にそらちゃんという文字がはいっていれば
-  var word_flag = false;
-  for(let i = 0;i < keyword.length;i++){
-    if(user_message.indexOf(keyword[i]) !== -1){
-      word_flag = true;
-    }
-  }
-
-  if(word_flag){
-    // 整数の１００までのランダムの数を　変数rnd_numの中に入れる
-    let rnd_num = Math.floor( Math.random() * roar.length );
-    // もしrnd_numが９０以下であれば にゃ〜ん とメッセージを送る
-     message.channel.send(roar[rnd_num]);
-  }
-
-  const greeting_keyword = ['おやすみ','おやすみなさい', 'おやすみなさーい', 'おはよー', 'おはよう', 'おっはー', 'こんにちは', 'こんばんは','こんばんわ', 'ただいま', 'ちゃっす', 'またね', 'ばいばい', 'さようなら', 'さらば'];
-  const greeting_roar = ['にゃん', 'にゃーん', 'にゃ〜？', 'にゃー！', 'み〜！', 'にゃ〜〜'];
-
-  // console.log((user_message).indexOf(greeting_keyword[0]));
-  let count = 0;
-  for(let i = 0; i < greeting_keyword.length; i++){
-    if(user_message.indexOf(greeting_keyword[i]) !== -1){
-      count+=1;
-      console.log(count);
-    }
-  }
-  if(count != 0){
-    let rnd_num = Math.floor( Math.random() * greeting_roar.length );
-    message.channel.send(greeting_roar[rnd_num]);
-  }
+  require("./sorachan.js");
 
   if(user_message.split(/\s/)[0] === "にゃん"){
     const command = user_message.split(/\s/)[1];
