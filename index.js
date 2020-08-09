@@ -110,8 +110,6 @@ client.on('message', message =>
        return;
   }
 
-  require("./sorachan.js");
-
   if(user_message.split(/\s/)[0] === "にゃん"){
     const command = user_message.split(/\s/)[1];
     let pre = "";
