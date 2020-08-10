@@ -36,7 +36,7 @@ client.on('message', message =>
     }
   if (command === 'imgChange') {
     //const sample = "https://pbs.twimg.com/profile_images/1161859919374536704/TeW4gIYA_400x400.jpg";
-    const img_url  = messageList[1];
+    const img_url  = argument[0];
     client.user.setAvatar(img_url);
     message.channel.send("image changing now...");
   }
@@ -105,14 +105,8 @@ client.on('message', message =>
       }
     );
   }
-  // もし、メッセージを送ったauthIDとアカウントのIDが同じであれば　（簡単に言うと自分にメンションを飛ばしていた場合）
-  if (message.author.id === client.user.id) {
-      //  ここで処理を終了させる
-       return;
-  }
 
-  if(user_message.split(/\s/)[0] === "にゃん"){
-    const command = user_message.split(/\s/)[1];
+  if(command === "にゃん"){
     let pre = "";
     let n1 = "\n";
     let n2 = "\n\n";
@@ -130,7 +124,7 @@ client.on('message', message =>
        "にゃん gy:上のコマンドの省略系\n"
      )
     }
-    if(command === "にゃん"){
+    if(argument[0] === "にゃん"){
       pre = "!";
       message.channel.send(
       "!bj 賭け金            　　　         （ブラックジャック）\n"+
@@ -149,11 +143,11 @@ client.on('message', message =>
       "!bal                　　　　　　　 （所持金確認）\n")
         .then(message => message.react('🐈'));
     }
-    else if(command === "にゃー"){
+    else if(argument[0] === "にゃー"){
       message.channel.send("このサーバーのメンバーは"+message.guild.members.size+"人だにゃ")
         .then(message => message.react('🐈'))
     }
-    else if(command === "ぱす"){
+    else if(argument[0] === "ぱす"){
       message.channel.send(
         "このサーバーでは\n"+
         ":bookmark:白（ウルトラヴァイオレット）\n"+
@@ -168,7 +162,7 @@ client.on('message', message =>
         "のランクがあって\n"+
         "上に行けば行くほど強い権限をもらえるし　いろいろできることが増える");
     }
-    else if(command === "ぱすー"){
+    else if(argument[0] === "ぱすー"){
       message.channel.send(
         "基本はレッドから始まりますが"+n1+
         "荒らし行為や人の迷惑になる行為を行った場合"+n1+
@@ -185,7 +179,7 @@ client.on('message', message =>
         ":heart:赤（レッド）："+n1+"・#自己紹介 チャンネルで自己紹介を行う"+n2
       );
     }
-    else if(command === "UnbelievaBoat-all" || command === "unbelievaboat-all" || command === "ub-a"){
+    else if(argument[0] === "UnbelievaBoat-all" || argument[0] === "unbelievaboat-all" || argument[0] === "ub-a"){
       pre = "!";
       message.channel.send(
         "ーーーーーーー 経済 ーーーーーーー"+n3+
@@ -267,7 +261,7 @@ client.on('message', message =>
 
       );
     }
-    else if(command === "UnbelievaBoat" || command === "unbelievaboat"　|| command === "ub"){
+    else if(argument[0] === "UnbelievaBoat" || argument[0] === "unbelievaboat"　|| argument[0] === "ub"){
       message.channel.send(
         "ーーーーーーー経済ーーーーーーー"+n1+
         pre+"economy-stats:"+n1+
@@ -286,7 +280,7 @@ client.on('message', message =>
         "ーーーーーーーーーーーーーーーーー"
       );
     }
-    else if(command === "Groovy" || command === "groovy" || command === "gy"){
+    else if(argument[0] === "Groovy" || argument[0] === "groovy" || argument[0] === "gy"){
       pre = "-";
       let aliase = "省略:";
       message.channel.send(
@@ -403,7 +397,7 @@ client.on('message', message =>
         aliase+"無し"+n2
       );
     }
-    else if(command === "Rythm" || command === "rythm"){
+    else if(argument[0] === "Rythm" || argument[0] === "rythm"){
 
     }
   }
