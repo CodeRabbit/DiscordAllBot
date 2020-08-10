@@ -12,7 +12,6 @@ client.on('message', message =>
   if (message.author.bot) return
   let user_message = message.content.replace(/　/g, ' ');
   let messageList = user_message.split(" ");
-  let command = messageList[1];
 
   if (user_message === 'status') {
       const userStatus = message.author.presence.clientStatus
