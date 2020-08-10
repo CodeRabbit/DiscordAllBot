@@ -7,13 +7,19 @@ client.on('ready', () => {
 
 client.on('message', message =>
 {
+  // userからの入力受付は　${pref}${command} ${...argument}
+
   console.log(`name:${message.author.username}, bot?:${message.author.bot}`)
   // botだったらここではじく
   if (message.author.bot) return
-  let user_message = message.content.replace(/　/g, ' ');
-  let messageList = user_message.split(" ");
+  // 全角を半角に変換して以降の処理を半角で統一する
+  const user_message = message.content.replace(/　/g, ' ');
+  // HACK 本当はslice(0,prefix.length)とかにして可変にしたい
+  const pref = user_message.slice(0,1);
 
-  if (user_message === 'status') {
+  const [command, ...argument] = user_message.slice(1).split(" ");
+
+  if (command === 'status') {
       const userStatus = message.author.presence.clientStatus
 
       if (!userStatus) {
@@ -28,24 +34,20 @@ client.on('message', message =>
         ].join('\n')
       )
     }
-  if (messageList[0] === 'imgChange') {
+  if (command === 'imgChange') {
     //const sample = "https://pbs.twimg.com/profile_images/1161859919374536704/TeW4gIYA_400x400.jpg";
     const img_url  = messageList[1];
     client.user.setAvatar(img_url);
     message.channel.send("image changing now...");
   }
 
-  if (user_message === 'outputImg') {
+  if (command === 'outputImg') {
     message.channel.send(client.user.avatarURL());
   }
 
-  // もし、クライアントからのメッセージが　ぬるぽ　なら
-   if (user_message === 'ぬるぽ') {
-    // 発言されたチャンネルに　ガッ！　とメッセージを送る
-    message.channel.send('ガッ！');
-  }
-  if (messageList[0] === 'nameChange' && messageList[1]){
-    client.user.setUsername(messageList[1]);
+  // HACK リファクタのにおいがする
+  if (command === 'nameChange' && argument[0]){
+    client.user.setUsername(argument[0]);
   }
 
   const botup = ["sora up-bot","sora bot-up", "そら 復活の呪文", "そら ふっかつのじゅもん"];
