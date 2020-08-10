@@ -50,62 +50,6 @@ client.on('message', message =>
     client.user.setUsername(argument[0]);
   }
 
-  const botup = ["sora up-bot","sora bot-up", "そら 復活の呪文", "そら ふっかつのじゅもん"];
-  if(botup.includes(user_message)){
-    message.channel.send(
-      {
-        embed: {
-          author: {
-            name: "どのbotを復活させますか？",
-            icon_url: "https://cdn.discordapp.com/embed/avatars/0.png"
-          },
-          description: "名前を押すと復活させるためのサイトに飛びます\n"+
-                       "`Discord bot is active now`と出たら復活完了です",
-          timestamp: new Date(),
-          footer: {
-            icon_url: client.user.avatarURL,
-            text: "©️ 株式会社こーちゃん"
-          },
-          color: 7506394,
-          fields: [
-            {
-              name: ":family_mwgb:",
-              value: "[全員まとめて復活させる](https://up-bots.glitch.me)"
-            },
-            {
-              name: ":cat2:",
-              value: "[そらちゃん](https://sorachan-bot.glitch.me/)"
-            },
-            {
-              name: ":chicken:",
-              value: "[コッコさん](https://kokko2.glitch.me/)"
-            },
-            {
-              name: ":tea:",
-              value: "[てぃーたいむ](https://ty-time.glitch.me/)"
-            },
-            {
-              name: ":dog2:",
-              value: "[ほたる](https://hotaru.glitch.me/)"
-            },
-            {
-              name: ":moyai:",
-              value: "[モアイ象](https://moaizou.glitch.me/)"
-            },
-            {
-              name: ":guide_dog:",
-              value: "[うめちゃん](https://umechan2.glitch.me/)"
-            },
-            {
-              name: ":video_game:",
-              value: "[ゲームボックス](https://dis-game-bot.glitch.me/)"
-            },
-          ]
-        }
-      }
-    );
-  }
-
   if(command === "にゃん"){
     let pre = "";
     let n1 = "\n";
