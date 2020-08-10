@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
+const System =  require('./System.js')
 
 client.on('ready', () => {
   console.log(`${client.user.tag}にログインしました！`)
@@ -19,91 +20,28 @@ client.on('message', message =>
 
   const [command, ...argument] = user_message.slice(1).split(" ");
 
-  if (command === 'status') {
-      const userStatus = message.author.presence.clientStatus
-
-      if (!userStatus) {
-        return message.channel.send('どのデバイスからもアクセスされていません。')
+  switch (prefix) {
+    // System の prefix
+    case "*" :
+      switch (command) {
+        case "status":
+          return system.statusCheck();
+          break;
+        case "outputImg":
+          return system.outputImg();
+          break;
+        case "imgChange":
+          if (argument[0] != null) return system.imgChange(argument[0]);
+          break;
+        // 短時間に何回も変えると変更できなくなるので　nickNameの方を変えるようにしたい
+        case "nameChange":
+          if (argument[0] != null) return system.nameChange(argument[0]);
+          break;
+        default:
+          return message.channel.send("*status\n*outputImg\n*imageChange [imgUrl]\n*nameChange [name]");
+        break;
       }
-
-      return message.channel.send(
-        [
-          'desktop: ' + (userStatus.desktop || 'offline'),
-          'mobile: ' + (userStatus.mobile || 'offline'),
-          'web: ' + (userStatus.web || 'offline'),
-        ].join('\n')
-      )
-    }
-  if (command === 'imgChange') {
-    //const sample = "https://pbs.twimg.com/profile_images/1161859919374536704/TeW4gIYA_400x400.jpg";
-    const img_url  = argument[0];
-    client.user.setAvatar(img_url);
-    message.channel.send("image changing now...");
-  }
-
-  if (command === 'outputImg') {
-    message.channel.send(client.user.avatarURL());
-  }
-
-  // HACK リファクタのにおいがする
-  if (command === 'nameChange' && argument[0]){
-    client.user.setUsername(argument[0]);
-  }
-
-  const botup = ["sora up-bot","sora bot-up", "そら 復活の呪文", "そら ふっかつのじゅもん"];
-  if(botup.includes(user_message)){
-    message.channel.send(
-      {
-        embed: {
-          author: {
-            name: "どのbotを復活させますか？",
-            icon_url: "https://cdn.discordapp.com/embed/avatars/0.png"
-          },
-          description: "名前を押すと復活させるためのサイトに飛びます\n"+
-                       "`Discord bot is active now`と出たら復活完了です",
-          timestamp: new Date(),
-          footer: {
-            icon_url: client.user.avatarURL,
-            text: "©️ 株式会社こーちゃん"
-          },
-          color: 7506394,
-          fields: [
-            {
-              name: ":family_mwgb:",
-              value: "[全員まとめて復活させる](https://up-bots.glitch.me)"
-            },
-            {
-              name: ":cat2:",
-              value: "[そらちゃん](https://sorachan-bot.glitch.me/)"
-            },
-            {
-              name: ":chicken:",
-              value: "[コッコさん](https://kokko2.glitch.me/)"
-            },
-            {
-              name: ":tea:",
-              value: "[てぃーたいむ](https://ty-time.glitch.me/)"
-            },
-            {
-              name: ":dog2:",
-              value: "[ほたる](https://hotaru.glitch.me/)"
-            },
-            {
-              name: ":moyai:",
-              value: "[モアイ象](https://moaizou.glitch.me/)"
-            },
-            {
-              name: ":guide_dog:",
-              value: "[うめちゃん](https://umechan2.glitch.me/)"
-            },
-            {
-              name: ":video_game:",
-              value: "[ゲームボックス](https://dis-game-bot.glitch.me/)"
-            },
-          ]
-        }
-      }
-    );
+    break;
   }
 
   if(command === "にゃん"){
