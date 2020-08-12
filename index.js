@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
+const System =  require('./System.js')
 
 client.on('ready', () => {
   console.log(`${client.user.tag}にログインしました！`)
@@ -7,47 +8,44 @@ client.on('ready', () => {
 
 client.on('message', message =>
 {
-  // userからの入力受付は　${pref}${command} ${...argument}
-
   console.log(`name:${message.author.username}, bot?:${message.author.bot}`)
   // botだったらここではじく
   if (message.author.bot) return
+
+  // ここでクラス作成
+  const system = new System(message, client);
+
+  // prefix付きのコマンドのuserからの入力期待値は　${prefix}${command} ${...argument}
   // 全角を半角に変換して以降の処理を半角で統一する
   const user_message = message.content.replace(/　/g, ' ');
   // HACK 本当はslice(0,prefix.length)とかにして可変にしたい
-  const pref = user_message.slice(0,1);
+  const prefix = user_message.slice(0,1);
 
   const [command, ...argument] = user_message.slice(1).split(" ");
 
-  if (command === 'status') {
-      const userStatus = message.author.presence.clientStatus
-
-      if (!userStatus) {
-        return message.channel.send('どのデバイスからもアクセスされていません。')
+  switch (prefix) {
+    // 実はbreakいらない箇所あるけど統一感なくて気持ち悪かったから書いた 後で直すかも...
+    // System の prefix
+    case "*" :
+      switch (command) {
+        case "status":
+          return system.statusCheck();
+          break;
+        case "outputImg":
+          return system.outputImg();
+          break;
+        case "imgChange":
+          if (argument[0] != null) return system.imgChange(argument[0]);
+          break;
+        // 短時間に何回も変えると変更できなくなるので　nickNameの方を変えるようにしたい
+        case "nameChange":
+          if (argument[0] != null) return system.nameChange(argument[0]);
+          break;
+        default:
+          return message.channel.send("*status\n*outputImg\n*imageChange [imgUrl]\n*nameChange [name]");
+        break;
       }
-
-      return message.channel.send(
-        [
-          'desktop: ' + (userStatus.desktop || 'offline'),
-          'mobile: ' + (userStatus.mobile || 'offline'),
-          'web: ' + (userStatus.web || 'offline'),
-        ].join('\n')
-      )
-    }
-  if (command === 'imgChange') {
-    //const sample = "https://pbs.twimg.com/profile_images/1161859919374536704/TeW4gIYA_400x400.jpg";
-    const img_url  = argument[0];
-    client.user.setAvatar(img_url);
-    message.channel.send("image changing now...");
-  }
-
-  if (command === 'outputImg') {
-    message.channel.send(client.user.avatarURL());
-  }
-
-  // HACK リファクタのにおいがする
-  if (command === 'nameChange' && argument[0]){
-    client.user.setUsername(argument[0]);
+    break;
   }
 
   if(command === "にゃん"){
@@ -55,7 +53,7 @@ client.on('message', message =>
     let n1 = "\n";
     let n2 = "\n\n";
     let n3 = "\n\n\n";
-    if(command=== "help"){
+    if(command === "help"){
      return message.channel.send(
        "にゃん　にゃん :カジノで遊べるコマンド一覧を教えてくれる\n"+
        "にゃん　にゃー :サーバーに入っている人数（bot込）を教えてくれる\n"+
