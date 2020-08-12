@@ -8,19 +8,23 @@ client.on('ready', () => {
 
 client.on('message', message =>
 {
-  // userからの入力受付は　${pref}${command} ${...argument}
-
   console.log(`name:${message.author.username}, bot?:${message.author.bot}`)
   // botだったらここではじく
   if (message.author.bot) return
+
+  // ここでクラス作成
+  const system = new System(message, client);
+
+  // prefix付きのコマンドのuserからの入力期待値は　${prefix}${command} ${...argument}
   // 全角を半角に変換して以降の処理を半角で統一する
   const user_message = message.content.replace(/　/g, ' ');
   // HACK 本当はslice(0,prefix.length)とかにして可変にしたい
-  const pref = user_message.slice(0,1);
+  const prefix = user_message.slice(0,1);
 
   const [command, ...argument] = user_message.slice(1).split(" ");
 
   switch (prefix) {
+    // 実はbreakいらない箇所あるけど統一感なくて気持ち悪かったから書いた 後で直すかも...
     // System の prefix
     case "*" :
       switch (command) {
