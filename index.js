@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
 const System =  require('./System.js')
+const Kokko =  require('./Kokko.js')
 
 client.on('ready', () => {
   console.log(`${client.user.tag}にログインしました！`)
@@ -14,6 +15,7 @@ client.on('message', message =>
 
   // ここでクラス作成
   const system = new System(message, client);
+  const kokko  = new Kokko(message, client);
 
   // prefix付きのコマンドのuserからの入力期待値は　${prefix}${command} ${...argument}
   // 全角を半角に変換して以降の処理を半角で統一する
