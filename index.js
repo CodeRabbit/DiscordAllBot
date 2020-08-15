@@ -52,8 +52,12 @@ client.on('message', message =>
           case "nameChange":
             if (argument[0] != null) return system.nameChange(argument[0]);
             break;
-          default:
-            return message.channel.send("*status\n*outputImg\n*imageChange [imgUrl]\n*nameChange [name]");
+          case "help":
+            return message.channel.send("*status\n"
+                                        +"*outputImg\n"
+                                        +"*imageChange [imgUrl]\n"
+                                        +"*nameChange [name]\n"
+                                      );
           break;
         }
       break;
@@ -66,17 +70,17 @@ client.on('message', message =>
       let n2 = "\n\n";
       let n3 = "\n\n\n";
       if(command === "help"){
-       return message.channel.send(
-         "にゃん　にゃん :カジノで遊べるコマンド一覧を教えてくれる\n"+
-         "にゃん　にゃー :サーバーに入っている人数（bot込）を教えてくれる\n"+
-         "にゃん　ぱす  :ランクの説明\n"+
-         "にゃん　ぱすー :ランクの昇格基準の表示\n"+
-         "にゃん UnbelievaBoat-all: UnbelievaBoatのコマンドを全て表示\n"+
-         "にゃん un-a:上のコマンドの省略形\n"+
-         "にゃん UnbelievaBoat:ユーザーが使えるコマンドだけを表示\n"+
-         "にゃん groovy:groovy(音楽bot)のコマンドを表示\n"+
-         "にゃん gy:上のコマンドの省略系\n"
-       )
+        return message.channel.send(
+          "にゃん　にゃん :カジノで遊べるコマンド一覧を教えてくれる\n"+
+          "にゃん　にゃー :サーバーに入っている人数（bot込）を教えてくれる\n"+
+          "にゃん　ぱす  :ランクの説明\n"+
+          "にゃん　ぱすー :ランクの昇格基準の表示\n"+
+          "にゃん UnbelievaBoat-all: UnbelievaBoatのコマンドを全て表示\n"+
+          "にゃん un-a:上のコマンドの省略形\n"+
+          "にゃん UnbelievaBoat:ユーザーが使えるコマンドだけを表示\n"+
+          "にゃん groovy:groovy(音楽bot)のコマンドを表示\n"+
+          "にゃん gy:上のコマンドの省略系\n"
+        )
       }
       if(argument[0] === "にゃん"){
         pre = "!";
