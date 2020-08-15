@@ -69,7 +69,7 @@ client.on('message', message =>
       let n1 = "\n";
       let n2 = "\n\n";
       let n3 = "\n\n\n";
-      if(command === "help"){
+      if(argument[0] === "help"){
         return message.channel.send(
           "にゃん　にゃん :カジノで遊べるコマンド一覧を教えてくれる\n"+
           "にゃん　にゃー :サーバーに入っている人数（bot込）を教えてくれる\n"+
