@@ -30,20 +30,22 @@ client.on('message', message =>
 
   let prefix_flag = false;
 
+  let command = "";
+  let arguments = [];
   // bot_prefix配列内に定義されたprefixがメッセージに含まれていれば1文字目を切り取る
   // 共通処理 空白で区切って1つ目をcommandに格納 残りをargumentsに格納する
   if (bot_prefix.indexOf(prefix) !== -1) {
-    const [command, ...arguments] = user_message.slice(1).split(" ");
+    [command, ...arguments] = user_message.slice(1).split(" ");
     prefix_flag = true;
   } else {
-    const [command, ...arguments] = user_message.split(" ");
+    [command, ...arguments] = user_message.split(" ");
   }
 
   if (prefix_flag) {
     switch (prefix) {
       // 実はbreakいらない箇所あるけど統一感なくて気持ち悪かったから書いた 後で直すかも...
       // System の prefix
-      case "*" :
+      case "*":
         switch (command) {
           // 端末のステータス確認
           case "status":
