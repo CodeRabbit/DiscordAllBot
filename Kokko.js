@@ -81,4 +81,4 @@ class Kokko{
     }
   }
 }
-module.exports = System
+module.exports = Kokko
