@@ -110,6 +110,13 @@ client.on('message', message =>
         return sora.rankUpCondition();
       break;
     }
+  } else {
+    // 一旦この実装でテスト（後でリファクタリング）
+    kokko.feelingReply();
+    kokko.eatMe();
+    kokko.fortune();
+    kokko.callMe();
+    kokko.greeting();
   }
 });
 
