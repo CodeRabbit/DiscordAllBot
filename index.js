@@ -88,7 +88,7 @@ client.on('message', message =>
             /* まだ書いてない */
           // コマンド一覧
           case "help":
-            return
+            return system.help();
           break;
         }
       break;
