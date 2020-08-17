@@ -12,7 +12,7 @@ class Kokko{
                           "ﾄﾞｳｾ ｸｳ ﾝ ﾀﾞｯﾀﾗ ﾃﾊﾞｻｷ ﾆ ｼﾃ ｸﾚ!", "ﾋｪｯ…", "ﾜﾀｼ ｵｲｼｸ ﾅｲ ﾖ!",
                           "ﾃﾊﾞｻｷ！ﾃﾊﾞｻｷ!", "ﾎﾞｸ ﾊ ｼﾆ ﾀｸ ｱﾘﾏ ｼｪｪﾝ!!"
                          ];
-    sendRandomMessage(feeling_keyword, feeling_message);
+    this.sendRandomMessage(feeling_keyword, feeling_message);
   }
   eatMe(){
     const eat_keyword = ["食ってやる","くってやる","食うぞ","くうぞ",
@@ -21,7 +21,7 @@ class Kokko{
     const eat_message = ["ﾀﾍﾞﾅｲﾃﾞ!", "ﾀｽｹﾃ!", "ｵｲｼｸﾅｲﾖ!",
                      "ｵﾅｶｺﾜｽﾖ!","ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛"
                     ];
-    sendRandomMessage(eat_keyword, eat_message);
+    this.sendRandomMessage(eat_keyword, eat_message);
   }
   fortune(){
     const fortune_keyword = ["こっこうらない", "こっこ占い",
@@ -33,7 +33,7 @@ class Kokko{
                              "ﾀﾞｲｷｮｳ!ﾀﾞｲｷｮｳ!", "ﾀﾇｷﾁ!ﾀﾇｷﾁ!", "ﾏﾒｷﾁ!ﾏﾒｷﾁ!",
                              "ﾂﾌﾞｷﾁ!ﾂﾌﾞｷﾁ!", "ﾂﾈｷﾁ!ﾂﾈｷﾁ!", "ﾏｼﾞｷﾁ!ﾏｼﾞｷﾁ!"
                             ];
-    sendRandomMessage(fortune_keyword, fortune_message);
+    this.sendRandomMessage(fortune_keyword, fortune_message);
   }
   callMe(){
     const call_keyword = ["こっこ", "コッコ",
@@ -46,7 +46,7 @@ class Kokko{
                           ":fire:ﾔｷﾄﾘ！ﾔｷﾄﾘ！:fire:", "ﾎﾞｸﾊ ｼﾆﾏｼｪｪﾝ!!",
                           "ｺｯｺ ｺｹｯｺ ｺｺｹｯｺｰ", "ｺｵｵｫｫｫｫｫｫｫ"
                          ];
-    sendArrayMessage(call_keyword, call_message);
+    this.sendArrayMessage(call_keyword, call_message);
   }
   greeting(){
     const greeting_keyword = ["おやすみ", "おやすみなさい", "おやすみなさーい", "おはよー", "おはよう",
@@ -56,21 +56,21 @@ class Kokko{
     const greeting_message = ["コケー", "コケッコー", "コッコケー！", "コケコッコー！",
                               "コーーーーケコッコーーーーー！", "コケコケコッコー！"
                              ];
-    sendArrayMessage(greeting_keyword, greeting_message);
+    this.sendArrayMessage(greeting_keyword, greeting_message);
   }
 
   // キーワード配列の中に完全一致するものがあるときにメッセージ配列の中からランダムで送信
   sendRandomMessage(keyword, send_message){
-    if (keyword.indexOf(message.content) !== -1) {
+    if (keyword.indexOf(this.message.content) !== -1) {
       let rnd_num = Math.floor(Math.random() * send_message.length);
-      return message.channel.send(send_message[rnd_num]);
+      return this.message.channel.send(send_message[rnd_num]);
     }
   }
   // 部分一致でUserメッセージ内にキーワードが含まれていたらメッセージ配列の中からランダムで送信
   sendArrayMessage(keyword, send_message){
     let keyword_flag = false;
     for(let i = 0; i < keyword.length; i++){
-      if(message.content.indexOf(keyword[i]) !== -1){
+      if(this.message.content.indexOf(keyword[i]) !== -1){
         keyword_flag = true;
         break;
       }
