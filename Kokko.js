@@ -12,7 +12,7 @@ class Kokko{
                           "ﾄﾞｳｾ ｸｳ ﾝ ﾀﾞｯﾀﾗ ﾃﾊﾞｻｷ ﾆ ｼﾃ ｸﾚ!", "ﾋｪｯ…", "ﾜﾀｼ ｵｲｼｸ ﾅｲ ﾖ!",
                           "ﾃﾊﾞｻｷ！ﾃﾊﾞｻｷ!", "ﾎﾞｸ ﾊ ｼﾆ ﾀｸ ｱﾘﾏ ｼｪｪﾝ!!"
                          ];
-    sendRandomMessage(feeling_keyword, feeling_message);
+    this.sendRandomMessage(feeling_keyword, feeling_message);
   }
   eatMe(){
     const eat_keyword = ["食ってやる","くってやる","食うぞ","くうぞ",
@@ -21,7 +21,7 @@ class Kokko{
     const eat_message = ["ﾀﾍﾞﾅｲﾃﾞ!", "ﾀｽｹﾃ!", "ｵｲｼｸﾅｲﾖ!",
                      "ｵﾅｶｺﾜｽﾖ!","ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛ｱ゛"
                     ];
-    sendRandomMessage(eat_keyword, eat_message);
+    this.sendRandomMessage(eat_keyword, eat_message);
   }
   fortune(){
     const fortune_keyword = ["こっこうらない", "こっこ占い",
@@ -33,7 +33,7 @@ class Kokko{
                              "ﾀﾞｲｷｮｳ!ﾀﾞｲｷｮｳ!", "ﾀﾇｷﾁ!ﾀﾇｷﾁ!", "ﾏﾒｷﾁ!ﾏﾒｷﾁ!",
                              "ﾂﾌﾞｷﾁ!ﾂﾌﾞｷﾁ!", "ﾂﾈｷﾁ!ﾂﾈｷﾁ!", "ﾏｼﾞｷﾁ!ﾏｼﾞｷﾁ!"
                             ];
-    sendRandomMessage(fortune_keyword, fortune_message);
+    this.sendRandomMessage(fortune_keyword, fortune_message);
   }
   callMe(){
     const call_keyword = ["こっこ", "コッコ",
@@ -46,7 +46,7 @@ class Kokko{
                           ":fire:ﾔｷﾄﾘ！ﾔｷﾄﾘ！:fire:", "ﾎﾞｸﾊ ｼﾆﾏｼｪｪﾝ!!",
                           "ｺｯｺ ｺｹｯｺ ｺｺｹｯｺｰ", "ｺｵｵｫｫｫｫｫｫｫ"
                          ];
-    sendArrayMessage(call_keyword, call_message);
+    this.sendArrayMessage(call_keyword, call_message);
   }
   greeting(){
     const greeting_keyword = ["おやすみ", "おやすみなさい", "おやすみなさーい", "おはよー", "おはよう",
@@ -56,7 +56,7 @@ class Kokko{
     const greeting_message = ["コケー", "コケッコー", "コッコケー！", "コケコッコー！",
                               "コーーーーケコッコーーーーー！", "コケコケコッコー！"
                              ];
-    sendArrayMessage(greeting_keyword, greeting_message);
+    this.sendArrayMessage(greeting_keyword, greeting_message);
   }
 
   // キーワード配列の中に完全一致するものがあるときにメッセージ配列の中からランダムで送信
