@@ -61,16 +61,16 @@ class Kokko{
 
   // キーワード配列の中に完全一致するものがあるときにメッセージ配列の中からランダムで送信
   sendRandomMessage(keyword, send_message){
-    if (keyword.indexOf(message.content) !== -1) {
+    if (keyword.indexOf(this.message.content) !== -1) {
       let rnd_num = Math.floor(Math.random() * send_message.length);
-      return message.channel.send(send_message[rnd_num]);
+      return this.message.channel.send(send_message[rnd_num]);
     }
   }
   // 部分一致でUserメッセージ内にキーワードが含まれていたらメッセージ配列の中からランダムで送信
   sendArrayMessage(keyword, send_message){
     let keyword_flag = false;
     for(let i = 0; i < keyword.length; i++){
-      if(message.content.indexOf(keyword[i]) !== -1){
+      if(this.message.content.indexOf(keyword[i]) !== -1){
         keyword_flag = true;
         break;
       }
