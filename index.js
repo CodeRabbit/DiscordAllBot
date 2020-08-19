@@ -85,6 +85,8 @@ client.on('message', message =>
           // Rythmの使い方
           case "Rythm":
           case "rythm":
+          case "Ryzm":
+          case "ryzm":
             /* まだ書いてない */
           // コマンド一覧
           case "help":
@@ -112,11 +114,11 @@ client.on('message', message =>
     }
   } else {
     // 一旦この実装でテスト（後でリファクタリング）
-    kokko.feelingReply();
-    kokko.eatMe();
-    kokko.fortune();
-    kokko.callMe();
-    kokko.greeting();
+    if(kokko.feelingReply()) return;
+    if(kokko.eatMe()) return;
+    if(kokko.fortune()) return;
+    if(kokko.callMe()) return;
+    if(kokko.greeting()) return;
   }
 });
 
