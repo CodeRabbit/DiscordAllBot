@@ -4,6 +4,7 @@ const client  = new Discord.Client();
 const System  = require('./System.js');
 const Kokko   = require('./Kokko.js');
 const Sora    = require('./Sora.js');
+const TeaTime = require('./TeaTime.js');
 
 client.on('ready', () => {
   console.log(`${client.user.tag}にログインしました！`);
@@ -16,9 +17,10 @@ client.on('message', message =>
   if (message.author.bot) return;
 
   // ここでクラス作成
-  const system = new System(message, client);
-  const kokko  = new Kokko (message, client);
-  const sora   = new Sora  (message);
+  const system  = new System  (message, client);
+  const kokko   = new Kokko   (message, client);
+  const sora    = new Sora    (message);
+  const teaTime = new TeaTime (message);
 
   // 各botのprefix
   const bot_prefix = ["*"];
@@ -114,11 +116,17 @@ client.on('message', message =>
     }
   } else {
     // 一旦この実装でテスト（後でリファクタリング）
+
+    // Kokko
     if(kokko.feelingReply()) return;
     if(kokko.eatMe()) return;
     if(kokko.fortune()) return;
     if(kokko.callMe()) return;
     if(kokko.greeting()) return;
+
+    // TieTime
+    if(teaTime.teaTime()) return;
+    if(teaTime.dekoTime()) return;
   }
 });
 
