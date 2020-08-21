@@ -6,12 +6,12 @@ class TeaTime{
   teaTime(){
     const ty_keyword = ["てぃーたいむ", "ティータイム"];
     const ty_message = ["てぃとてぃーたいむしてこ？♡", "てぃとてぃーたいむしてｺｯ？♡"];
-    return sendRandomMessage(ty_keyword, ty_message);
+    return this.sendRandomMessage(ty_keyword, ty_message);
   }
   dekoTime(){
     const deko_keyword = ["でこでこたいむ", "でこでこタイム", "でこちたいむ", "でこちタイム", "でこぴたいむ", "でこぴタイム"];
     const deko_message = ["でこでこビーム！", "でことでこでこしてこ♡", "でことでこでこしてｺｯ？"];
-    return sendRandomMessage(deko_keyword, deko_message);
+    return this.sendRandomMessage(deko_keyword, deko_message);
   }
   sendRandomMessage(keyword, send_message){
     let send_flag = false;
