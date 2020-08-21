@@ -1,7 +1,6 @@
 class TeaTime{
-  constructor(message, client){
+  constructor(message){
     this.message = message;
-    this.client = client;
   }
   teaTime(){
     const ty_keyword = ["てぃーたいむ", "ティータイム"];
