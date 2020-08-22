@@ -1,105 +1,117 @@
 const Discord = require('discord.js');
-const client  = new Discord.Client();
 
-const System  = require('./System.js');
-const Kokko   = require('./Kokko.js');
-const Sora    = require('./Sora.js');
+const systemClient  = new Discord.Client();
+const kokkoClient   = new Discord.Client();
+const soraClient    = new Discord.Client();
+const teaTimeClient = new Discord.Client();
+
+const System  = require('./System.js' );
+const Kokko   = require('./Kokko.js'  );
+const Sora    = require('./Sora.js'   );
 const TeaTime = require('./TeaTime.js');
 
-client.on('ready', () => {
-  console.log(`${client.user.tag}にログインしました！`);
+/*************** system ***************/
+systemClient.on( 'ready', () => {
+  console.log( `${ systemClient.user.tag }にログインしました！` );
 })
 
-client.on('message', message =>
-{
-  console.log(`name:${message.author.username}, bot?:${message.author.bot}`);
-  // botだったらここではじく
-  if (message.author.bot) return;
+systemClient.on( 'message', message => {
+  if ( message.author.bot ) return;
 
-  // ここでクラス作成
-  const system  = new System  (message, client);
-  const kokko   = new Kokko   (message, client);
-  const sora    = new Sora    (message);
-  const teaTime = new TeaTime (message);
+  const system  = new System  ( message, systemClient );
 
-  // 各botのprefix
-  const bot_prefix = ["*"];
-  // prefix付きのコマンドのuserからの入力期待値は　${prefix}${command} ${...arguments}
   // 全角を半角に変換して以降の処理を半角で統一する
   const user_message = message.content.replace(/　/g, ' ');
-  // HACK 本当はslice(0,prefix.length)とかにして可変にしたい
-  const prefix = user_message.slice(0,1);
 
-  let prefix_flag = false;
+  const prefix = user_message.slice(0, 1);
 
-  let command = "";
-  let arguments = [];
-  // bot_prefix配列内に定義されたprefixがメッセージに含まれていれば1文字目を切り取る
+  if ( prefix != "*" ) return;
+
   // 共通処理 空白で区切って1つ目をcommandに格納 残りをargumentsに格納する
-  if (bot_prefix.indexOf(prefix) !== -1) {
-    [command, ...arguments] = user_message.slice(1).split(" ");
-    prefix_flag = true;
-  } else {
-    [command, ...arguments] = user_message.split(" ");
-  }
+  const [ command, ...arguments ] = user_message.slice(1).split(" ");
 
-  if (prefix_flag) {
-    switch (prefix) {
-      // 実はbreakいらない箇所あるけど統一感なくて気持ち悪かったから書いた 後で直すかも...
-      // System の prefix
-      case "*":
-        switch (command) {
-          // 端末のステータス確認
-          case "status":
-            return system.statusCheck();
-            break;
-          // アバターイメージ送信
-          case "outputImg":
-            return system.outputImg();
-            break;
-          // アバターイメージ変更
-          case "imgChange":
-            if (arguments[0] != null) return system.imgChange(arguments[0]);
-            break;
-          // ユーザー名変更
-          // 短時間に何回も変えると変更できなくなるので　nickNameの方を変えるようにしたい
-          case "nameChange":
-            if (arguments[0] != null) return system.nameChange(arguments[0]);
-            break;
-          // UnbelievaBoatボットの全ての機能の使い方
-          case "UnbelievaBoat-all":
-          case "unbelievaboat-all":
-          case "ub-a":
-          case "UBA":
-            return system.unbelievaBoatInfoAll();
-          // UnbelievaBoatボットの一般ユーザーの機能の使い方
-          case "UnbelievaBoat":
-          case "unbelievaboat":
-          case "ub":
-          case "UB":
-            return system.unbelievaBoatInfo();
-          // Groovyの使い方
-          case "Groovy":
-          case "groovy":
-          case "gy":
-          case "GY":
-            return system.groovyInfo();
-          // Rythmの使い方
-          case "Rythm":
-          case "rythm":
-          case "Ryzm":
-          case "ryzm":
-            /* まだ書いてない */
-          // コマンド一覧
-          case "help":
-            return system.help();
-          break;
-        }
+  // 実はbreakいらない箇所あるけど統一感なくて気持ち悪かったから書いた 後で直すかも...
+  switch ( command ) {
+    // 端末のステータス確認
+    case "status":
+      return system.statusCheck();
       break;
-    }
-  } else if(command === "にゃん"){
+    // アバターイメージ送信
+    case "outputImg":
+      return system.outputImg();
+      break;
+    // アバターイメージ変更
+    case "imgChange":
+      if ( arguments[0] != null ) return system.imgChange( arguments[0] );
+      break;
+    // ユーザー名変更
+    // 短時間に何回も変えると変更できなくなるので　nickNameの方を変えるようにしたい
+    case "nameChange":
+      if ( arguments[0] != null ) return system.nameChange( arguments[0] );
+      break;
+    // UnbelievaBoatボットの全ての機能の使い方
+    case "UnbelievaBoat-all":
+    case "unbelievaboat-all":
+    case "ub-a":
+    case "UBA":
+      return system.unbelievaBoatInfoAll();
+    // UnbelievaBoatボットの一般ユーザーの機能の使い方
+    case "UnbelievaBoat":
+    case "unbelievaboat":
+    case "ub":
+    case "UB":
+      return system.unbelievaBoatInfo();
+    // Groovyの使い方
+    case "Groovy":
+    case "groovy":
+    case "gy":
+    case "GY":
+      return system.groovyInfo();
+    // Rythmの使い方
+    case "Rythm":
+    case "rythm":
+    case "Ryzm":
+    case "ryzm":
+      /* まだ書いてない */
+    // コマンド一覧
+    case "help":
+      return system.help();
+    break;
+  }
+});
+
+/*************** kokko ***************/
+kokkoClient.on( 'ready', () => {
+  console.log( `${kokkoClient.user.tag}にログインしました！` );
+})
+
+kokkoClient.on( 'message', message => {
+  if ( message.author.bot ) return;
+
+  const kokko = new Kokko ( message, kokkoClient );
+
+  if ( kokko.feelingReply () ) return;
+  if ( kokko.eatMe        () ) return;
+  if ( kokko.fortune      () ) return;
+  if ( kokko.callMe       () ) return;
+  if ( kokko.greeting     () ) return;
+});
+
+/******************** sora ********************/
+soraClient.on( 'ready', () => {
+  console.log( `${ soraClient.user.tag }にログインしました！` );
+})
+
+soraClient.on( 'message', message => {
+  if ( message.author.bot ) return;
+
+  const sora = new Sora ( message );
+  const user_message = message.content.replace(/　/g, ' ');
+  const [ command, ...arguments ] = user_message.split(" ");
+
+  if( command === "にゃん" ){
     // prefixなしコマンドの場合
-    switch(arguments[0]) {
+    switch( arguments[0] ) {
       // にゃんコマンドの使い方説明
       case "help":
         return sora.help();
@@ -114,20 +126,25 @@ client.on('message', message =>
         return sora.rankUpCondition();
       break;
     }
-  } else {
-    // 一旦この実装でテスト（後でリファクタリング）
-
-    // Kokko
-    if(kokko.feelingReply()) return;
-    if(kokko.eatMe()) return;
-    if(kokko.fortune()) return;
-    if(kokko.callMe()) return;
-    if(kokko.greeting()) return;
-
-    // TieTime
-    if(teaTime.teaTime()) return;
-    if(teaTime.dekoTime()) return;
   }
-});
+})
 
-client.login(process.env.BOT_TOKEN);
+/******************** TeaTime ********************/
+teaTimeClient.on( 'ready', () => {
+  console.log( `${ teaTimeClient.user.tag }にログインしました！` );
+})
+
+teaTimeClient.on( 'message', message => {
+  if ( message.author.bot ) return;
+
+  const teaTime = new TeaTime ( message );
+
+  if ( teaTime.teaTime  () ) return;
+  if ( teaTime.dekoTime () ) return;
+})
+
+/******************** login ********************/
+systemClient .login(process.env.SYSTEM_BOT_TOKEN );
+kokkoClient  .login(process.env.KOKKO_BOT_TOKEN  );
+soraClient   .login(process.env.SORA_BOT_TOKEN   );
+teaTimeClient.login(process.env.TEATIME_BOT_TOKEN);
