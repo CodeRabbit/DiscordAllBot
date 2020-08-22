@@ -37,11 +37,11 @@ systemClient.on( 'message', message => {
       return system.statusCheck();
       break;
     // アバターイメージ送信
-    case "outputImg":
+    case "outputImage":
       return system.outputImg();
       break;
     // アバターイメージ変更
-    case "imgChange":
+    case "imageChange":
       if ( arguments[0] != null ) return system.imgChange( arguments[0] );
       break;
     // ユーザー名変更

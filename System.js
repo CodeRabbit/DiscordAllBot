@@ -7,7 +7,7 @@
     help(){
       this.message.channel.send(
         "*status\n"
-        +"*outputImg\n"
+        +"*outputImage\n"
         +"*imageChange [imgUrl]\n"
         +"*nameChange [name]\n"
         +"*UnbelievaBoat-all: UnbelievaBoatのコマンドを全て表示\n"
