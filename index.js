@@ -88,7 +88,7 @@ kokkoClient.on( 'ready', () => {
 kokkoClient.on( 'message', message => {
   if ( message.author.bot ) return;
 
-  const kokko = new Kokko ( message, kokkoClient );
+  const kokko = new Kokko ( message );
 
   if ( kokko.feelingReply () ) return;
   if ( kokko.eatMe        () ) return;

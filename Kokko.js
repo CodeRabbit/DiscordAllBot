@@ -1,7 +1,6 @@
 class Kokko{
-  constructor(message, client){
+  constructor(message){
     this.message = message;
-    this.client = client;
   }
   feelingReply(){
     const feeling_keyword = ["こっこの気持ち", "こっこのきもち", "コッコの気持ち",
