@@ -156,7 +156,7 @@ musicBotClient.on( 'message', message => {
 
   const musicBot = new MusicBot ( message, ytdl );
 
-  if (this.mssage.content.startsWith('!yt') && this.message.guild) {
+  if (message.content.startsWith('!yt') && message.guild) {
     return musicBot.playMusic();
   }
 
