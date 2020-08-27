@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const ytdl    = require('ytdl-core');
 
 const systemClient   = new Discord.Client();
 const kokkoClient    = new Discord.Client();
@@ -159,7 +158,7 @@ musicBotClient.on( 'ready', () => {
 musicBotClient.on( 'message', message => {
   if ( message.author.bot ) return;
 
-  const musicBot = new MusicBot ( message, ytdl );
+  const musicBot = new MusicBot ( message );
 
   if (message.content.startsWith('!yt') && message.guild) {
     return musicBot.playMusic();

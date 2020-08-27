@@ -1,12 +1,13 @@
 class MusicBot{
   constructor(message){
     this.message = message;
+    const ytdl  = require('this.ytdl-core');
   }
   async playMusic() {
     // メッセージから動画URLだけを取り出す
     const url = this.message.content.split(' ')[1]
     // まず動画が見つからなければ処理を止める
-    if (!ytdl.validateURL(url)) return this.message.reply('動画が存在しません！')
+    if (!this.ytdl.validateURL(url)) return this.message.reply('動画が存在しません！')
     // コマンドを実行したメンバーのボイスチャンネル指定
     let channel = this.message.member.voice.channel
     // コマンドを実行したメンバーがボイスチャンネルに入ってなければ処理を止める
@@ -14,7 +15,7 @@ class MusicBot{
     // チャンネルに参加
     const connection = await channel.join()
     // 動画の音源を取得
-    const stream = ytdl(ytdl.getURLVideoID(url), { filter: 'audioonly' })
+    const stream = ytdl(this.ytdl.getURLVideoID(url), { filter: 'audioonly' })
     // 再生
     const dispatcher = connection.play(stream)
 
