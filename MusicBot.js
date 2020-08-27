@@ -1,7 +1,7 @@
 class MusicBot{
   constructor(message){
     this.message = message;
-    const ytdl  = require('this.ytdl-core');
+    const ytdl  = require('ytdl-core');
   }
   async playMusic() {
     // メッセージから動画URLだけを取り出す
