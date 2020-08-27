@@ -15,7 +15,7 @@ class MusicBot{
     // チャンネルに参加
     const connection = await channel.join()
     // 動画の音源を取得
-    const stream = ytdl(this.ytdl.getURLVideoID(url), { filter: 'audioonly' })
+    const stream = this.ytdl(this.ytdl.getURLVideoID(url), { filter: 'audioonly' })
     // 再生
     const dispatcher = connection.play(stream)
 
