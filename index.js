@@ -130,6 +130,11 @@ soraClient.on( 'message', message => {
       break;
     }
   }
+
+  if ( sora.feelingReply () ) return;
+  if ( sora.callMe       () ) return;
+  if ( sora.greeting     () ) return;
+
 })
 
 /******************** TeaTime ********************/
