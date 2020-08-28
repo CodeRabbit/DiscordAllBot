@@ -107,7 +107,7 @@
                   ];
       let rule_str = '';
       for (let i=0; i < command_lists.length; i++) {
-        rule_str += `${prefix}${command_lists[i]} ${argument_lists[i]}\n${description_lists[i]}\n省略:${alias_lists[i]}`
+        rule_str += `${prefix}${command_lists[i]} ${argument_lists[i]}\n${description_lists[i]}\n省略:${alias_lists[i]}\n\n`
       }
       this.message.channel.send(rule_str);
     }
