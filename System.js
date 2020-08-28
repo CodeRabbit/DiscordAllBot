@@ -55,21 +55,21 @@
     // groovyの使い方送信
     groovyInfo(){
       const prefix = '-';
-      const command = ['play', 'play file', 'queue', 'next', 'back'
+      const command_lists = ['play', 'play file', 'queue', 'next', 'back'
                       , 'clear', 'jump', 'loop', 'lylics', 'pause'
                       , 'resume', 'remove' ,'remove range', 'disconnect', 'shuffle'
                       , 'song', 'fast forward', 'rewind', 'search', 'seek'
                       , 'stop', 'move', 'prefix', 'prefix', 'announce'
                       , 'perms', 'perms', 'perms'
                     ];
-      const arguments = ['<リンク | 探したい曲名>', '', '', '', ''
+      const argument_lists = ['<リンク | 探したい曲名>', '', '', '', ''
                       , '', '<曲の位置 | 曲のタイトル>', '', '[曲名]', ''
                       , '', '', '<start>, <end>', '', ''
                       , '[曲名 | 曲の位置]', '[秒数]', '[秒数]', '<曲名>', '<曲のポジション>'
                       , '', '<曲名>, <新しい位置>', '', '<新しい接頭語>', ''
                       , '', '<ロール | ユーザー>', '<deny | allow | clear> <ロール | ユーザー>, <パーミッション>'
                     ];
-      const description = ['指定した曲やプレイリストを再生できる'
+      const description_lists = ['指定した曲やプレイリストを再生できる'
                           ,'メッセージに添付されたファイルを再生する'
                           ,'追加されているリクエストをみる'
                           ,'次の曲にスキップする'
@@ -98,7 +98,7 @@
                           ,'指定した対象の設定がどうなっているかを確認できる'
                           ,'ロールまたはユーザーの権限を変更する allを使用することで全ての権限を選択できる'
                         ];
-      const alias = ['p,q,queue', 'pf', 'q', 'n,skip', 'b,previous,prev'
+      const alias_lists = ['p,q,queue', 'pf', 'q', 'n,skip', 'b,previous,prev'
                     , '無し', 'j,goto', 'l', 'ly', '無し'
                     , 'unpause', 'r,rm,delete,del', 'rr', 'dc,leave,reset', 'shuff,shuf,randomize,randomise'
                     , 'nowplaying,np', 'ff,fwd', 'rw', 's', '無し'
@@ -107,7 +107,7 @@
                   ];
       let rule_str = '';
       for (let i=0; i < command.length; i++) {
-        rule_str += `${prefix}${command[i]} ${arguments[i]}\n${description[i]}\n省略:${alias[i]}`
+        rule_str += `${prefix}${command_lists[i]} ${argument_lists[i]}\n${description_lists[i]}\n省略:${alias_lists[i]}`
       }
       this.message.channel.send(rule_str);
     }
