@@ -73,7 +73,7 @@ class Kokko{
   sendArrayMessage(keyword, send_message){
     let keyword_flag = false;
     for(let i = 0; i < keyword.length; i++){
-      if(this.message.content.indexOf(keyword[i]) !== -1){
+      if(this.message.content.includes(keyword[i])){
         keyword_flag = true;
         break;
       }

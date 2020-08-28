@@ -6,34 +6,34 @@ const soraClient     = new Discord.Client();
 const teaTimeClient  = new Discord.Client();
 const musicBotClient = new Discord.Client();
 
-const System   = require('./System.js'  );
-const Kokko    = require('./Kokko.js'   );
-const Sora     = require('./Sora.js'    );
-const TeaTime  = require('./TeaTime.js' );
+const System   = require('./System.js');
+const Kokko    = require('./Kokko.js');
+const Sora     = require('./Sora.js');
+const TeaTime  = require('./TeaTime.js');
 const MusicBot = require('./MusicBot.js');
 
 /*************** system ***************/
-systemClient.on( 'ready', () => {
-  console.log( `${ systemClient.user.tag }にログインしました！` );
+systemClient.on('ready', () => {
+  console.log(`${systemClient.user.tag}にログインしました！`);
 })
 
-systemClient.on( 'message', message => {
-  if ( message.author.bot ) return;
+systemClient.on('message', message => {
+  if (message.author.bot) return;
 
-  const system  = new System  ( message, systemClient );
+  const system  = new System(message, systemClient);
 
   // 全角を半角に変換して以降の処理を半角で統一する
   const user_message = message.content.replace(/　/g, ' ');
 
   const prefix = user_message.slice(0, 1);
 
-  if ( prefix != "*" ) return;
+  if (prefix != "*") return;
 
   // 共通処理 空白で区切って1つ目をcommandに格納 残りをargumentsに格納する
-  const [ command, ...arguments ] = user_message.slice(1).split(" ");
+  const [command, ...arguments] = user_message.slice(1).split(" ");
 
   // 実はbreakいらない箇所あるけど統一感なくて気持ち悪かったから書いた 後で直すかも...
-  switch ( command ) {
+  switch (command) {
     // 端末のステータス確認
     case "status":
       return system.statusCheck();
@@ -44,12 +44,12 @@ systemClient.on( 'message', message => {
       break;
     // アバターイメージ変更
     case "imageChange":
-      if ( arguments[0] != null ) return system.imgChange( arguments[0] );
+      if (arguments[0] != null) return system.imgChange(arguments[0]);
       break;
     // ユーザー名変更
     // 短時間に何回も変えると変更できなくなるので　nickNameの方を変えるようにしたい
     case "nameChange":
-      if ( arguments[0] != null ) return system.nameChange( arguments[0] );
+      if (arguments[0] != null) return system.nameChange(arguments[0]);
       break;
     // UnbelievaBoatボットの全ての機能の使い方
     case "UnbelievaBoat-all":
@@ -83,37 +83,37 @@ systemClient.on( 'message', message => {
 });
 
 /*************** kokko ***************/
-kokkoClient.on( 'ready', () => {
-  console.log( `${kokkoClient.user.tag}にログインしました！` );
+kokkoClient.on('ready', () => {
+  console.log(`${kokkoClient.user.tag}にログインしました！`);
 })
 
-kokkoClient.on( 'message', message => {
-  if ( message.author.bot ) return;
+kokkoClient.on('message', message => {
+  if (message.author.bot) return;
 
-  const kokko = new Kokko ( message );
+  const kokko = new Kokko (message);
 
-  if ( kokko.feelingReply () ) return;
-  if ( kokko.eatMe        () ) return;
-  if ( kokko.fortune      () ) return;
-  if ( kokko.callMe       () ) return;
-  if ( kokko.greeting     () ) return;
+  if (kokko.feelingReply ()) return;
+  if (kokko.eatMe        ()) return;
+  if (kokko.fortune      ()) return;
+  if (kokko.callMe       ()) return;
+  if (kokko.greeting     ()) return;
 });
 
 /******************** sora ********************/
-soraClient.on( 'ready', () => {
-  console.log( `${ soraClient.user.tag }にログインしました！` );
+soraClient.on('ready', () => {
+  console.log(`${soraClient.user.tag}にログインしました！`);
 })
 
-soraClient.on( 'message', message => {
-  if ( message.author.bot ) return;
+soraClient.on('message', message => {
+  if (message.author.bot) return;
 
-  const sora = new Sora ( message );
+  const sora = new Sora (message);
   const user_message = message.content.replace(/　/g, ' ');
-  const [ command, ...arguments ] = user_message.split(" ");
+  const [command, ...arguments] = user_message.split(" ");
 
-  if( command === "にゃん" ){
+  if(command === "にゃん"){
     // prefixなしコマンドの場合
-    switch( arguments[0] ) {
+    switch(arguments[0]) {
       // にゃんコマンドの使い方説明
       case "help":
         return sora.help();
@@ -130,35 +130,35 @@ soraClient.on( 'message', message => {
     }
   }
 
-  if ( sora.feelingReply () ) return;
-  if ( sora.callMe       () ) return;
-  if ( sora.greeting     () ) return;
+  if (sora.feelingReply ()) return;
+  if (sora.callMe       ()) return;
+  if (sora.greeting     ()) return;
 
 })
 
 /******************** TeaTime ********************/
-teaTimeClient.on( 'ready', () => {
-  console.log( `${ teaTimeClient.user.tag }にログインしました！` );
+teaTimeClient.on('ready', () => {
+  console.log(`${teaTimeClient.user.tag}にログインしました！`);
 })
 
-teaTimeClient.on( 'message', message => {
-  if ( message.author.bot ) return;
+teaTimeClient.on('message', message => {
+  if (message.author.bot) return;
 
-  const teaTime = new TeaTime ( message );
+  const teaTime = new TeaTime (message);
 
-  if ( teaTime.teaTime  () ) return;
-  if ( teaTime.dekoTime () ) return;
+  if (teaTime.teaTime  ()) return;
+  if (teaTime.dekoTime ()) return;
 })
 
 /******************** MusicBot ********************/
-musicBotClient.on( 'ready', () => {
-  console.log( `${ musicBotClient.user.tag }にログインしました！` );
+musicBotClient.on('ready', () => {
+  console.log(`${musicBotClient.user.tag}にログインしました！`);
 })
 
-musicBotClient.on( 'message', message => {
-  if ( message.author.bot ) return;
+musicBotClient.on('message', message => {
+  if (message.author.bot) return;
 
-  const musicBot = new MusicBot ( message );
+  const musicBot = new MusicBot (message);
 
   if (message.content.startsWith('!yt') && message.guild) {
     return musicBot.playMusic();
