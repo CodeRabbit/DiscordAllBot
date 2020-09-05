@@ -185,5 +185,6 @@ musicBotClient.on('message', message => {
 systemClient  .login(process.env.SYSTEM_BOT_TOKEN );
 kokkoClient   .login(process.env.KOKKO_BOT_TOKEN  );
 soraClient    .login(process.env.SORA_BOT_TOKEN   );
+hotaruClient  .login(process.env.HOTARU_BOT_TOKEN );
 teaTimeClient .login(process.env.TEATIME_BOT_TOKEN);
 musicBotClient.login(process.env.MUSIC_BOT_TOKEN  );
