@@ -3,12 +3,14 @@ const Discord = require('discord.js');
 const systemClient   = new Discord.Client();
 const kokkoClient    = new Discord.Client();
 const soraClient     = new Discord.Client();
+const hotaruClient   = new Discord.Client();
 const teaTimeClient  = new Discord.Client();
 const musicBotClient = new Discord.Client();
 
 const System   = require('./System.js');
 const Kokko    = require('./Kokko.js');
 const Sora     = require('./Sora.js');
+const Hotaru   = require('./Hotaru.js');
 const TeaTime  = require('./TeaTime.js');
 const MusicBot = require('./MusicBot.js');
 
@@ -134,6 +136,19 @@ soraClient.on('message', message => {
   if (sora.callMe       ()) return;
   if (sora.greeting     ()) return;
 
+})
+
+/******************** Hotaru *********************/
+hotaruClient.on('ready', () => {
+  console.log(`${hotaruClient.user.tag}にログインしました！`);
+})
+
+hotaruClient.on('message', message => {
+  if (message.author.bot) return;
+
+  const hotaru = new Hotaru (message);
+
+  if (hotaru.callMe()) return;
 })
 
 /******************** TeaTime ********************/
