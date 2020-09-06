@@ -1,5 +1,7 @@
-class Hotaru{
+const Pet = require('./Pet.js');
+class Hotaru extends Pet{
   constructor(message){
+    super(message);
     this.message = message;
   }
 
@@ -14,22 +16,6 @@ class Hotaru{
                          ];
 
     return this.sendArrayMessage(call_keyword, call_message);
-  }
-
-  // 部分一致でUserメッセージ内にキーワードが含まれていたらメッセージ配列の中からランダムで送信
-  sendArrayMessage(keyword, send_message){
-    let keyword_flag = false;
-    for(let i = 0; i < keyword.length; i++){
-      if(this.message.content.includes(keyword[i])){
-        keyword_flag = true;
-        break;
-      }
-    }
-    if(keyword_flag){
-      let message_index = Math.floor( Math.random() * send_message.length );
-      this.message.channel.send(send_message[message_index]);
-    }
-    return keyword_flag;
   }
 }
 module.exports = Hotaru
