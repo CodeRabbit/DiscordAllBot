@@ -1,1 +1,3 @@
-# いままでREADMEなかったの！？
+## DiscordBot
+Discordのいろんな機能を搭載したBot（にする予定）
+同時にJavaScriptを勉強中...
