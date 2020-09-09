@@ -6,7 +6,7 @@ class Hotaru extends Pet{
   }
 
   callMe(){
-    const call_keyword = ['ほたるくん', 'ほたる', '散歩'];
+    const call_keyword = ['ほたるくん', 'ほたる', '散歩', 'さんぽ'];
     const call_message = ['ﾅﾆﾅﾆﾅﾆﾅﾆ！！！！！！',
                           'どうしたの！？あそんでくれるの！？あそぼー！！！',
                           'よんだ！？よんだよね！？今よんだよね！！！！',
