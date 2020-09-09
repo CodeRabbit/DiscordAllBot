@@ -4,6 +4,7 @@ const systemClient   = new Discord.Client();
 const kokkoClient    = new Discord.Client();
 const soraClient     = new Discord.Client();
 const hotaruClient   = new Discord.Client();
+const umeClient      = new Discord.Client();
 const teaTimeClient  = new Discord.Client();
 const musicBotClient = new Discord.Client();
 
@@ -11,6 +12,7 @@ const System   = require('./System.js');
 const Kokko    = require('./Kokko.js');
 const Sora     = require('./Sora.js');
 const Hotaru   = require('./Hotaru.js');
+const Ume      = require('./Ume.js');
 const TeaTime  = require('./TeaTime.js');
 const MusicBot = require('./MusicBot.js');
 
@@ -151,6 +153,19 @@ hotaruClient.on('message', message => {
   if (hotaru.callMe()) return;
 })
 
+/********************* Ume ***********************/
+umeClient.on('ready', () => {
+  console.log(`${umeClient.user.tag}にログインしました！`);
+})
+
+umeClient.on('message', message => {
+  if (message.author.bot) return;
+
+  const ume = new Ume (message);
+
+  if (ume.callMe()) return;
+})
+
 /******************** TeaTime ********************/
 teaTimeClient.on('ready', () => {
   console.log(`${teaTimeClient.user.tag}にログインしました！`);
@@ -186,5 +201,6 @@ systemClient  .login(process.env.SYSTEM_BOT_TOKEN );
 kokkoClient   .login(process.env.KOKKO_BOT_TOKEN  );
 soraClient    .login(process.env.SORA_BOT_TOKEN   );
 hotaruClient  .login(process.env.HOTARU_BOT_TOKEN );
+umeClient     .login(process.env.UME_BOT_TOKEN    );
 teaTimeClient .login(process.env.TEATIME_BOT_TOKEN);
 musicBotClient.login(process.env.MUSIC_BOT_TOKEN  );
