@@ -5,6 +5,7 @@ const kokkoClient    = new Discord.Client();
 const soraClient     = new Discord.Client();
 const hotaruClient   = new Discord.Client();
 const umeClient      = new Discord.Client();
+const moyaiClient    = new Discord.Client();
 const teaTimeClient  = new Discord.Client();
 const musicBotClient = new Discord.Client();
 
@@ -15,6 +16,7 @@ const Hotaru   = require('./Hotaru.js');
 const Ume      = require('./Ume.js');
 const TeaTime  = require('./TeaTime.js');
 const MusicBot = require('./MusicBot.js');
+const Moyai    = require('./Moyai.js');
 
 /*************** system ***************/
 systemClient.on('ready', () => {
@@ -164,6 +166,19 @@ umeClient.on('message', message => {
   const ume = new Ume (message);
 
   if (ume.callMe()) return;
+})
+
+/********************* Moyai ***********************/
+moyaiClient.on('ready', () => {
+  console.log(`${moyaiClient.user.tag}にログインしました！`);
+})
+
+moyaiClient.on('message', message => {
+  if (message.author.bot) return;
+
+  const moyai = new Moyai (message);
+
+  if (moyai.callMe()) return;
 })
 
 /******************** TeaTime ********************/
