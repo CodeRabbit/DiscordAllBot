@@ -217,5 +217,6 @@ kokkoClient   .login(process.env.KOKKO_BOT_TOKEN  );
 soraClient    .login(process.env.SORA_BOT_TOKEN   );
 hotaruClient  .login(process.env.HOTARU_BOT_TOKEN );
 umeClient     .login(process.env.UME_BOT_TOKEN    );
+moyaiClient   .login(process.env.MOYAI_BOT_TOKEN  );
 teaTimeClient .login(process.env.TEATIME_BOT_TOKEN);
 musicBotClient.login(process.env.MUSIC_BOT_TOKEN  );
