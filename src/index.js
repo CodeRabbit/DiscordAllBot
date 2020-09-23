@@ -43,20 +43,16 @@ systemClient.on('message', message => {
     // 端末のステータス確認
     case "status":
       return system.statusCheck();
-      break;
     // アバターイメージ送信
     case "outputImage":
       return system.outputImg();
-      break;
     // アバターイメージ変更
     case "imageChange":
-      if (arguments[0] != null) return system.imgChange(arguments[0]);
-      break;
+      return arguments[0] != null ? system.imgChange(arguments[0]): null;
     // ユーザー名変更
     // 短時間に何回も変えると変更できなくなるので　nickNameの方を変えるようにしたい
     case "nameChange":
-      if (arguments[0] != null) return system.nameChange(arguments[0]);
-      break;
+      return arguments[0] != null ? system.nameChange(arguments[0]): null;
     // UnbelievaBoatボットの全ての機能の使い方
     case "UnbelievaBoat-all":
     case "unbelievaboat-all":
@@ -84,7 +80,6 @@ systemClient.on('message', message => {
     // コマンド一覧
     case "help":
       return system.help();
-    break;
   }
 });
 
