@@ -136,12 +136,10 @@ soraClient.on('message', message => {
     }
   }
 
-  //test用
-  str = "2d100";
-  pattern = "/[0-9]+(d)[0-9]+/";
-  let grep = new RegExp(pattern,'g');
+  let pattern = "^[0-9]+d[0-9]+$";
+  let reg = new RegExp(pattern);
 
-  if(grep.test(str)) {
+  if(reg.test(message.content)) {
     return sora.dise();
   }
 
