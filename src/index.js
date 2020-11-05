@@ -136,7 +136,12 @@ soraClient.on('message', message => {
     }
   }
 
-  if(command === "dise" || command === "DISE" || command === "だいす" || command === "ダイス") {
+  //test用
+  str = "2d100";
+  pattern = "/[0-9]+(d)[0-9]+/";
+  let grep = new RegExp(pattern,'g');
+
+  if(grep.test(str)) {
     return sora.dise();
   }
 
