@@ -136,6 +136,10 @@ soraClient.on('message', message => {
     }
   }
 
+  if(command === "dise" || command === "DISE" || command === "だいす" || command === "ダイス") {
+    return sora.dise();
+  }
+
   if (sora.feelingReply ()) return;
   if (sora.callMe       ()) return;
   if (sora.greeting     ()) return;

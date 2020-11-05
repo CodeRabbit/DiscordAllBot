@@ -119,5 +119,18 @@ class Sora extends Pet{
                             ];
     this.sendArrayMessage(greeting_keyword, greeting_message);
   }
+
+  dise() {
+    this.message.channel.send("done");
+    try {
+      index = this.message.content.indexOf("d",1);
+      num = this.message.content.slice(0,index);
+      max = this.message.content.slice(index+1);
+      this.message.channel.send(Math.floor(Math.random() * Math.floor(num*max)));
+    } catch(e) {
+      this.message.channel.send("エラーを検出したにゃ!");
+      this.message.channel.send(e);
+    }
+  }
 }
 module.exports = Sora
