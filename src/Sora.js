@@ -125,7 +125,7 @@ class Sora extends Pet{
       let index = this.message.content.indexOf("d",1);
       let num = this.message.content.slice(0,index);
       let max = this.message.content.slice(index+1);
-      this.message.channel.send(Math.floor(Math.random() * Math.floor(num*max))+1);
+      this.message.channel.send(Math.floor(Math.random() * Math.floor(num*max))+num);
     } catch(e) {
       console.log(e);
     }
