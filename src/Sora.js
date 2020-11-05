@@ -121,7 +121,6 @@ class Sora extends Pet{
   }
 
   dise() {
-    this.message.channel.send("done");
     try {
       index = this.message.content.indexOf("d",1);
       num = this.message.content.slice(0,index);
