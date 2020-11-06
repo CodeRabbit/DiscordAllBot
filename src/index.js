@@ -140,7 +140,7 @@ soraClient.on('message', message => {
   let reg = new RegExp(pattern);
 
   if(reg.test(message.content)) {
-    return sora.dise();
+    return sora.dice();
   }
 
   if (sora.feelingReply ()) return;
