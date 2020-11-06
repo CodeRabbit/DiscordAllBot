@@ -144,6 +144,7 @@ soraClient.on('message', message => {
   }
 
   if (sora.feelingReply ()) return;
+  if (sora.caressReply  ()) return;
   if (sora.callMe       ()) return;
   if (sora.greeting     ()) return;
 

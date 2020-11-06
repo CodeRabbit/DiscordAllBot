@@ -99,6 +99,14 @@ class Sora extends Pet{
     return this.sendRandomMessage(feeling_keyword, feeling_message);
   }
 
+  caressReply(){
+    const feeling_keyword = ['なでなで', 'ナデナデ', 'ﾅﾃﾞﾅﾃﾞ',
+                             'よしよし', 'ヨシヨシ', 'ﾖｼﾖｼ'
+                            ];
+    const feeling_message = ['にゃ〜:heart:', 'すき〜:heart', 'ｺﾞﾛｺﾞﾛ〜'];
+    return this.sendRandomMessage(feeling_keyword, feeling_message);
+  }
+
   callMe(){
     const call_keyword = ['そらちゃん', 'そーらちゃん', 'そらちゃーん',
                           'そ〜らちゃん', 'そらちゃ〜ん'
