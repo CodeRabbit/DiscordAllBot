@@ -129,18 +129,18 @@ class Sora extends Pet{
       let dice_max = this.message.content.slice(find_index+1);
 
       // 許容する1度に振れるダイスの最大数
-      let max = 50;
+      let onetime_max = 50;
 
-      let sum = 0;
+      let dice_sum = 0;
 
-      if(num <= max) {
-        this.message.channel.send(`一度に振れるダイスは${max}個までだにゃ。増やしたい場合はkoochanに連絡してほしいにゃ`);
+      if(dice_num <= onetime_max) {
+        this.message.channel.send(`一度に振れるダイスは${onetime_max}個までだにゃ。増やしたい場合はkoochanに連絡してほしいにゃ`);
       }
 
       for(let i=0; i < dice_num; i++) {
         sum += Math.floor(Math.random() * Math.floor(dice_max))+1;
       }
-      this.message.channel.send(sum);
+      this.message.channel.send(dice_sum);
 
     } catch(e) {
       console.log(e);
