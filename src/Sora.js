@@ -133,8 +133,8 @@ class Sora extends Pet{
 
       let dice_sum = 0;
 
-      if(onetime_max <= dice_num) {
-        this.message.channel.send(`一度に振れるダイスは${onetime_max}個までだにゃ。増やしたい場合はkoochanに連絡してほしいにゃ`);
+      if(onetime_max < dice_num) {
+        return this.message.channel.send(`一度に振れるダイスは${onetime_max}個までだにゃ。増やしたい場合はkoochanに連絡してほしいにゃ`);
       }
 
       for(let i=0; i < dice_num; i++) {
