@@ -42,14 +42,6 @@ soraClient.on('ready', () => {
   console.log(`${soraClient.user.tag}にログインしました！`);
 })
 
-soraClient.on('guildMemberAdd', member => {
-  console.log("guildMemberAdd入った");
-  member.guild.channels.cache.get('773721618128175127');
-  if (!channel) return;
-  channel.send(`**参加** ${member.user.tag}さんが参加しました！`);
-  console.log(member.displayName)
-})
-
 soraClient.on('message', message => {
   if (message.author.bot) return;
 
