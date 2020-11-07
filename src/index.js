@@ -110,6 +110,18 @@ soraClient.on('ready', () => {
   console.log(`${soraClient.user.tag}にログインしました！`);
 })
 
+soraClient.on('guildMemberAdd', member => {
+  console.log("test");
+  const channel = member.guild.channels.cache.get("<773721618128175127>");
+  if (!channel) {
+    return;
+  } else {
+    console.log("キャッシュ");
+  }
+  channel.send(`**参加** ${member.user.tag}さんが参加しました！`);
+  channel.send('(っ´∀`)っ:tea: お茶どうぞ');
+})
+
 soraClient.on('message', message => {
   if (message.author.bot) return;
 
@@ -149,19 +161,6 @@ soraClient.on('message', message => {
   if (sora.greeting     ()) return;
 
 })
-
-soraClient.on('guildMemberAdd', member => {
-  console.log("test");
-  const channel = member.guild.channels.cache.get("<773721618128175127>");
-  if (!channel) {
-    return;
-  } else {
-    console.log("キャッシュ");
-  }
-  channel.send(`**参加** ${member.user.tag}さんが参加しました！`);
-  channel.send('(っ´∀`)っ:tea: お茶どうぞ');
-})
-
 /******************** Hotaru *********************/
 hotaruClient.on('ready', () => {
   console.log(`${hotaruClient.user.tag}にログインしました！`);
