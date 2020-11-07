@@ -150,14 +150,11 @@ soraClient.on('message', message => {
 
 })
 
-soraClient.on('guildMemberAdd', member => {
-  console.log(`${member.guild.name} に ${member.displayName} が参加しました`);
-  member.send('(っ´∀`)っ:tea: お茶どうぞ');
-})
-
-soraClient.on('guildMemberRemove', member => {
-  console.log(`${member.guild.name} から ${member.displayName} が退出しました`);
-
+soraClient.on('guildMemberAdd', (member, guild) => {
+  const channel = member.guild.channels.cache.get("<773721618128175127>");
+  if (!channel) return;
+  channel.send(`**参加** ${member.user.tag}さんが参加しました！`);
+  channel.send('(っ´∀`)っ:tea: お茶どうぞ');
 })
 
 /******************** Hotaru *********************/
