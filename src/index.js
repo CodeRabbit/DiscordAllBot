@@ -2,11 +2,9 @@ const Discord = require('discord.js');
 
 const systemClient   = new Discord.Client();
 const soraClient     = new Discord.Client();
-const musicBotClient = new Discord.Client();
 
 const System   = require('./System.js');
 const Sora     = require('./Sora.js');
-const MusicBot = require('./MusicBot.js');
 
 /*************** system ***************/
 systemClient.on('ready', () => {
@@ -123,22 +121,6 @@ soraClient.on('message', message => {
 
 })
 
-/******************** MusicBot ********************/
-musicBotClient.on('ready', () => {
-  console.log(`${musicBotClient.user.tag}にログインしました！`);
-})
-
-musicBotClient.on('message', message => {
-  if (message.author.bot) return;
-
-  const musicBot = new MusicBot (message);
-
-  if (message.content.startsWith('!yt') && message.guild) {
-    return musicBot.playMusic();
-  }
-
-})
-
 /******************** login ********************/
 systemClient  .login(process.env.SYSTEM_BOT_TOKEN );
 // kokkoClient   .login(process.env.KOKKO_BOT_TOKEN  );
@@ -147,4 +129,4 @@ soraClient    .login(process.env.SORA_BOT_TOKEN   );
 // umeClient     .login(process.env.UME_BOT_TOKEN    );
 // moyaiClient   .login(process.env.MOYAI_BOT_TOKEN  );
 // teaTimeClient .login(process.env.TEATIME_BOT_TOKEN);
-musicBotClient.login(process.env.MUSIC_BOT_TOKEN  );
+// musicBotClient.login(process.env.MUSIC_BOT_TOKEN  );
