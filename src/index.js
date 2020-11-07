@@ -150,10 +150,14 @@ soraClient.on('message', message => {
 
 })
 
-soraClient.on('guildMemberAdd', (member, guild) => {
+soraClient.on('guildMemberAdd', member => {
   console.log("test");
   const channel = member.guild.channels.cache.get("<773721618128175127>");
-  if (!channel) return;
+  if (!channel) {
+    return;
+  } else {
+    console.log("キャッシュある");
+  }
   channel.send(`**参加** ${member.user.tag}さんが参加しました！`);
   channel.send('(っ´∀`)っ:tea: お茶どうぞ');
 })
