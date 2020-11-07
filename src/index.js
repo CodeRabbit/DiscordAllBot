@@ -156,7 +156,7 @@ soraClient.on('guildMemberAdd', member => {
   if (!channel) {
     return;
   } else {
-    console.log("キャッシュある");
+    console.log("キャッシュ");
   }
   channel.send(`**参加** ${member.user.tag}さんが参加しました！`);
   channel.send('(っ´∀`)っ:tea: お茶どうぞ');
