@@ -3,55 +3,7 @@
       this.message = message;
       this.client = client;
     }
-    // コマンドの使い方送信
-    help(){
-      this.message.channel.send(
-        '*status\n'
-        +'*outputImage\n'
-        +'*imageChange [imgUrl]\n'
-        +'*nameChange [name]\n'
-        +'*UnbelievaBoat-all: UnbelievaBoatのコマンドを全て表示\n'
-        +'*ub-a:上のコマンドの省略形\n'
-        +'*UnbelievaBoat:ユーザーが使えるコマンドだけを表示\n'
-        +'*groovy:groovy(音楽bot)のコマンドを表示\n'
-        +'*gy:上のコマンドの省略系\n'
-        +'*help'
-      );
-    }
-    // デバイスのオンライン状態を調べる
-    statusCheck(){
-      const message = this.message;
-      const userStatus = message.author.presence.clientStatus;
 
-      if (!userStatus) {
-        return message.channel.send('どのデバイスからもアクセスされていません。')
-      }
-
-      return message.channel.send(
-        [
-          'desktop: ' + (userStatus.desktop || 'offline'),
-          'mobile: ' + (userStatus.mobile || 'offline'),
-          'web: ' + (userStatus.web || 'offline'),
-        ].join('\n')
-      );
-    }
-    // アバター画像変更
-    imgChange(img_url) {
-      this.client.user.setAvatar(img_url);
-      this.message.channel.send('image changing now...');
-    }
-    // アバター画像送信
-    outputImg() {
-      this.message.channel.send(this.client.user.avatarURL());
-    }
-    // ユーザーネーム変更
-    // 短時間に変更しすぎるとブロックされるのでニックネームの変更にしたい
-    // (ニックネーム変更メソッドに見えたけどこれユーザーネームの変更っぽい Discordこのやろう)
-    nameChange(name) {
-      this.message.guild.members.fetch(this.client.user.id).setNickname(name);
-      // this.client.user.setUsername(name);
-      this.message.channel.send('name changing now...');
-    }
     // groovyの使い方送信
     groovyInfo(){
       const prefix = '-';

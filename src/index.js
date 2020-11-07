@@ -28,57 +28,26 @@ systemClient.on('message', message => {
 
   // 実はbreakいらない箇所あるけど統一感なくて気持ち悪かったから書いた 後で直すかも...
   switch (command) {
-    // 端末のステータス確認
-    case "status":
-      return system.statusCheck();
-      break;
-    // アバターイメージ送信
-    case "outputImage":
-      return system.outputImg();
-      break;
-    // アバターイメージ変更
-    case "imageChange":
-      if (arguments[0] != null) return system.imgChange(arguments[0]);
-      break;
-    // ユーザー名変更
-    // 短時間に何回も変えると変更できなくなるので　nickNameの方を変えるようにしたい
-    case "nameChange":
-      if (arguments[0] != null) return system.nameChange(arguments[0]);
-      break;
-    // UnbelievaBoatボットの全ての機能の使い方
-    case "UnbelievaBoat-all":
-    case "unbelievaboat-all":
-    case "ub-a":
-    case "UBA":
-      return system.unbelievaBoatInfoAll();
-    // UnbelievaBoatボットの一般ユーザーの機能の使い方
-    case "UnbelievaBoat":
-    case "unbelievaboat":
-    case "ub":
-    case "UB":
-      return system.unbelievaBoatInfo();
     // Groovyの使い方
     case "Groovy":
     case "groovy":
     case "gy":
     case "GY":
       return system.groovyInfo();
-    // Rythmの使い方
-    case "Rythm":
-    case "rythm":
-    case "Ryzm":
-    case "ryzm":
-      /* まだ書いてない */
-    // コマンド一覧
-    case "help":
-      return system.help();
-    break;
   }
 });
 
 /******************** sora ********************/
 soraClient.on('ready', () => {
   console.log(`${soraClient.user.tag}にログインしました！`);
+})
+
+soraClient.on('guildMemberAdd', member => {
+  console.log("guildMemberAdd入った");
+  member.guild.channels.cache.get('773721618128175127');
+  if (!channel) return;
+  channel.send(`**参加** ${member.user.tag}さんが参加しました！`);
+  console.log(member.displayName)
 })
 
 soraClient.on('message', message => {
@@ -107,10 +76,7 @@ soraClient.on('message', message => {
     }
   }
 
-  let pattern = "^[0-9]+d[0-9]+$";
-  let reg = new RegExp(pattern);
-
-  if(reg.test(message.content)) {
+  if(new RegExp("^[0-9]+d[0-9]+$").test(message.content)) {
     return sora.dice();
   }
 
@@ -123,10 +89,4 @@ soraClient.on('message', message => {
 
 /******************** login ********************/
 systemClient  .login(process.env.SYSTEM_BOT_TOKEN );
-// kokkoClient   .login(process.env.KOKKO_BOT_TOKEN  );
 soraClient    .login(process.env.SORA_BOT_TOKEN   );
-// hotaruClient  .login(process.env.HOTARU_BOT_TOKEN );
-// umeClient     .login(process.env.UME_BOT_TOKEN    );
-// moyaiClient   .login(process.env.MOYAI_BOT_TOKEN  );
-// teaTimeClient .login(process.env.TEATIME_BOT_TOKEN);
-// musicBotClient.login(process.env.MUSIC_BOT_TOKEN  );
