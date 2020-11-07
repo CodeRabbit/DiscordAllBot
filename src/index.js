@@ -150,6 +150,16 @@ soraClient.on('message', message => {
 
 })
 
+soraClient.on('guildMemberAdd', member => {
+  console.log(`${member.guild.name} に ${member.displayName} が参加しました`);
+  member.send('(っ´∀`)っ:tea: お茶どうぞ');
+})
+
+soraClient.on('guildMemberRemove', member => {
+  console.log(`${member.guild.name} から ${member.displayName} が退出しました`);
+
+})
+
 /******************** Hotaru *********************/
 hotaruClient.on('ready', () => {
   console.log(`${hotaruClient.user.tag}にログインしました！`);
