@@ -151,6 +151,7 @@ soraClient.on('message', message => {
 })
 
 soraClient.on('guildMemberAdd', (member, guild) => {
+  console.log("test");
   const channel = member.guild.channels.cache.get("<773721618128175127>");
   if (!channel) return;
   channel.send(`**参加** ${member.user.tag}さんが参加しました！`);
