@@ -68,6 +68,15 @@ soraClient.on('message', message => {
     }
   }
 
+  switch (command) {
+    // Groovyの使い方
+    case "Groovy":
+    case "groovy":
+    case "gy":
+    case "GY":
+      return sora.groovyInfo();
+  }
+
   if(new RegExp("^[0-9]+d[0-9]+$").test(message.content)) {
     return sora.dice();
   }
